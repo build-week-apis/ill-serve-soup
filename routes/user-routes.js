@@ -25,19 +25,28 @@ router.post("/api/register", (req, res) => {
   const creds = req.body;
   const hash = bcrypt.hashSync(creds.password, 12);
   creds.password = hash;
-  userHelpers
-    .registerUser(creds)
-    .then(user => {
-      //const token = generateToken(user);
-      res.status(200).json({
-        //token,
-        id: user.id,
-        email: user.email,
-        message: `User: ${user.name} was registered succesfully`
+
+  if (creds.name && creds.password && creds.email) {
+    userHelpers
+      .registerUser(creds)
+      .then(user => {
+        //const token = generateToken(user);
+        res.status(200).json({
+          //token,
+          id: user.id,
+          email: user.email,
+          message: `User: ${user.name} was registered succesfully`
+        });
+      })
+      .catch(err => {
+        //console.log(err);
+        res.status(500).json({ err: "error trying to register user" });
       });
-    })
-    .catch(err => {
-      //console.log(err);
-      res.status(500).json({ err: "eross" });
+  } else {
+    res.status(401).json({
+      message: "please provide name, password and email for the user"
     });
+  }
 });
+
+module.exports = router;
