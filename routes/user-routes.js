@@ -14,9 +14,9 @@ const userHelpers = require("../database/dbHelpers/userHelpers.js");
  *
  * Exemple of payload
  * {
- *  name: {string} needs to be unique  - require
- *  password: {string}   - require
- *  email: {string}   - require
+ *  name: {string} unique  - require
+ *  password: {string}  - require
+ *  email: {string} unique  - require
  *  role: {string}   - optional for now
  * }
  *
