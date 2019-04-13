@@ -21,7 +21,7 @@ const userHelpers = require("../database/dbHelpers/userHelpers.js");
  * }
  *
  */
-router.post("/api/register", (req, res) => {
+router.post("/api/users/register", (req, res) => {
   const creds = req.body;
   const hash = bcrypt.hashSync(creds.password, 12);
   creds.password = hash;
@@ -83,7 +83,7 @@ function makeTokenFromUser(user) {
  * }
  *
  */
-router.post("/api/login", (req, res) => {
+router.post("/api/users/login", (req, res) => {
   let { name, password } = req.body;
 
   if (name && password) {
