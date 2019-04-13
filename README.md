@@ -49,3 +49,46 @@ Form will need `username` and `password`. If posted correctly, should get a resp
     "id": 5
 }
 ```
+
+## GET ALL Users
+
+a **GET** request to \_/api/users will return all the users existing in database
+
+URL: /api/users/
+
+If Successful, response should be 200 (OK). If unsuccessful, response should be 500. Example users data:
+
+```
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Mihai",
+            "email": "mihsi@yahoo.com",
+            "password": "123",
+            "role": "manager"
+        },
+        {
+            "id": 2,
+            "name": "Ion",
+            "email": "ion@yahoo.com",
+            "password": "123",
+            "role": "volunteer"
+        },
+        {
+            "id": 3,
+            "name": "Maria",
+            "email": "maria@yahoo.com",
+            "password": "123",
+            "role": "manager"
+        },
+    ],
+    "decoded": {
+        "subject": 7,
+        "role": "manager",
+        "email": "cata@yahoo.com",
+        "iat": 1555192150,
+        "exp": 1555264150
+    }
+}
+```
