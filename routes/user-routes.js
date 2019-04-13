@@ -111,4 +111,44 @@ router.post("/api/users/login", (req, res) => {
   }
 });
 
+/**
+ *  * [GET] /api/register
+ *
+ * Endpoint for Getting all the users 
+ * 
+ * Requirements: need authorization header with token
+ *               need role of user: Admin || Staff
+ *
+ * Exemple of Response from the server
+ {[
+         {
+            "id": 14,
+            "name": "Mia",
+            "email": "mia@yahoo.com",
+            "password": "$2a$12$kFQU7QYCQrq.SA5Wk7JUAOPVjERLaBY44kkEMh/1qHE9yos1nYrLW",
+            "role": "manager"
+        }
+    ],
+    "decoded": {
+        "subject": 14,
+        "role": "manager",
+        "email": "mia@yahoo.com",
+        "iat": 1555164970,
+        "exp": 1555236970
+    }
+}
+ *
+ */
+router.get("/api/users", restricted, checkRole, async (req, res) => {
+  try {
+    const users = await userHelpers.getAllUsers();
+    res.status(200).json({
+      users,
+      decoded: req.decodedToken
+    });
+  } catch (error) {
+    res.status(500).json({ error: "error trying to get users" });
+  }
+});
+
 module.exports = router;
