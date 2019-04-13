@@ -19,7 +19,7 @@ Example data:
 	"name":"Sorin",
 	"password":"123",
 	"email":"sorin@yahoo.com",
-	"role":"admin"
+	"role":"manager"
 }
 ```
 
@@ -45,7 +45,7 @@ Form will need `username` and `password`. If posted correctly, should get a resp
 {
     "message": "Welcome Sorin!",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo1LCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNvcmluQHlhaG9vLmNvbSIsImlhdCI6MTU1NTE5MTE4NiwiZXhwIjoxNTU1MjYzMTg2fQ.bmynQf4cFPjY3xRbf1aL5zdi90Fk7Kq51lcFX5smPQg",
-    "role": "admin",
+    "role": "manager",
     "id": 5
 }
 ```
