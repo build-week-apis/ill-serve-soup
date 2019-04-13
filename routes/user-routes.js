@@ -49,4 +49,26 @@ router.post("/api/register", (req, res) => {
   }
 });
 
+/**
+ *  //Function for creating the token from user information
+ *
+ * @param {object} user
+ */
+function makeTokenFromUser(user) {
+  const payload = {
+    subject: user.id,
+    username: user.username,
+    role: user.role,
+    email: user.email
+  };
+  const secret = process.env.SECRET || "secret text - came from .env";
+  const options = {
+    expiresIn: "20h"
+  };
+
+  const token = jwt.sign(payload, secret, options);
+
+  return token;
+}
+
 module.exports = router;
