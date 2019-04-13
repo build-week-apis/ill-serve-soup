@@ -71,4 +71,44 @@ function makeTokenFromUser(user) {
   return token;
 }
 
+/**
+ *  * [POST] /api/register
+ *
+ * Endpoint for login a user
+ *
+ * Exemple of payload
+ * {
+ *  name: {string}   - require
+ *  password: {string}   - require
+ * }
+ *
+ */
+router.post("/api/login", (req, res) => {
+  let { name, password } = req.body;
+
+  if (name && password) {
+    userHelpers
+      .findBy({ name })
+      .first()
+      .then(user => {
+        if (user && bcrypt.compareSync(password, user.password)) {
+          const token = makeTokenFromUser(user);
+          res.status(200).json({
+            message: `Welcome ${user.name}!`,
+            token: token,
+            role: user.role,
+            id: user.id
+          });
+        } else {
+          res.status(401).json({ message: "Invalid Credentials" });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({ error: "error trying to login user" });
+      });
+  } else {
+    res.status(400).json({ message: "please provide username and password" });
+  }
+});
+
 module.exports = router;
