@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-//const restricted = require("../middleware/restrictedRoute");  for later
+const restricted = require("../middleware/tokenRestricted");
 //const checkRole = require("../middleware/roleCheck");  for later
 
 const userHelpers = require("../database/dbHelpers/userHelpers.js");
@@ -139,7 +139,7 @@ router.post("/api/users/login", (req, res) => {
 }
  *
  */
-router.get("/api/users", restricted, checkRole, async (req, res) => {
+router.get("/api/users", restricted, async (req, res) => {
   try {
     const users = await userHelpers.getAllUsers();
     res.status(200).json({
