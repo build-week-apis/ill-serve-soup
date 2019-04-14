@@ -119,9 +119,9 @@ If Successful, response should be 200 (OK). If unsuccessful, response should be 
 
 URL: /api/users/:id
 
-This route is restricted - a authorization header with the token its required
+Nothing required, can change as few or as many things as wanted.
 
-Example: Changing user 2's `username` from Sam to test, and `funds_balance` from 0 to 25:
+Example: Changing user 6's `username` from Alex to Alexandru, and `email` from alex@yahho.com to newEmail@yahoo.com
 
 ```
 {
@@ -134,14 +134,16 @@ A successful post will return the updated user ID and a message. For example, th
 
 ```
 {
-    "updateID": 6,
-    "message": "Update succesfully"
+    "updateID": "2",
+    "message": "User: Alexandru Update succesfully"
 }
 ```
 
 ## DELETE User
 
 URL: /api/users/:id
+
+Nothing required, can change as few or as many things as wanted.
 
 A successful delete will return a object a message, for example deleting a user succesfully will return:
 
