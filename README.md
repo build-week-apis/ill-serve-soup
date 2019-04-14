@@ -230,3 +230,29 @@ Example Data for /api/users/items/2:
     }
 }
 ```
+
+## POST Items
+
+URL: /api/items
+
+The API does not _require_ every section to be provided. Reguire fields: name and amout.
+
+```
+{
+	"name":"Magic",
+	"amount":"12 lbs"
+}
+```
+
+A successfully created item will return a object with the posted item:
+
+```
+{
+    "id": 13,
+    "name": "Magic",
+    "amount": "12 lbs",
+    "unit": null,
+    "image": null,
+    "categoryID": null
+}
+```
