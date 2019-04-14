@@ -57,6 +57,7 @@ a **GET** request to \_/api/users will return all the users existing in database
 URL: /api/users/
 
 This route is restricted - a authorization header with the token its required
+The respone will include the decoded tokend contains the id,email and role of the current user
 
 If Successful, response should be 200 (OK). If unsuccessful, response should be 500. Example users data:
 
@@ -150,5 +151,84 @@ A successful delete will return a object with a message, for example deleting a 
 ```
 {
     "message": "Delete Succesfully"
+}
+```
+
+## GET all Items/Inventory from database
+
+URL: /api/users/:id/items
+
+The respone will include the decoded tokend contains the id,email and role of the current user
+This route is restricted - a authorization header with the token its required
+
+Example Data for /api/users/items:
+
+```
+{
+    "items": [
+        {
+            "id": 1,
+            "name": "Stone fruit",
+            "amount": 12,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/SCAVfIV.jpg",
+            "categoryID": 2
+        },
+        {
+            "id": 2,
+            "name": "carrots",
+            "amount": 15,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/NdX1vFQ.jpg",
+            "categoryID": 1
+        },
+        {
+            "id": 3,
+            "name": "cereal",
+            "amount": 3,
+            "unit": "gal",
+            "image": "https://i.imgur.com/dGWUJEj.jpg",
+            "categoryID": 4
+        },
+        {
+            "id": 4,
+            "name": "cheese",
+            "amount": 5,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/Tl318Os.jpg",
+            "categoryID": 4
+        },
+        {
+            "id": 5,
+            "name": "bread",
+            "amount": 3,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/mUyhf6x.jpg",
+            "categoryID": 9
+        },
+        {
+            "id": 6,
+            "name": "bacon",
+            "amount": 3,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/wIoynYP.jpg",
+            "categoryID": 7
+        },
+        {
+            "id": 7,
+            "name": "Chunky",
+            "amount": 5,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/sIshItO.jpg",
+            "categoryID": 8
+        }
+    ],
+    "decodedToken": {
+        "subject": 4,
+        "role": "manager",
+        "email": "cata@yahoo.com",
+        "iat": 1555256198,
+        "exp": 1555328198
+    }
 }
 ```
