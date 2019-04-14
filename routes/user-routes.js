@@ -196,4 +196,24 @@ router.put("/api/users/:id", async (req, res) => {
   }
 });
 
+/**
+ * Delete User
+ */
+router.delete("/api/users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await userHelpers.deleteUser(id);
+    if (result === 1) {
+      res.status(200).json({
+        message: "Delete Succesfully"
+      });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "error trying to delete user" });
+  }
+});
+
 module.exports = router;
