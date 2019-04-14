@@ -57,6 +57,7 @@ a **GET** request to \_/api/users will return all the users existing in database
 URL: /api/users/
 
 This route is restricted - a authorization header with the token its required
+The respone will include the decoded tokend contains the id,email and role of the current user
 
 If Successful, response should be 200 (OK). If unsuccessful, response should be 500. Example users data:
 
@@ -119,9 +120,9 @@ If Successful, response should be 200 (OK). If unsuccessful, response should be 
 
 URL: /api/users/:id
 
-This route is restricted - a authorization header with the token its required
+Nothing required, can change as few or as many things as wanted.
 
-Example: Changing user 2's `username` from Sam to test, and `funds_balance` from 0 to 25:
+Example: Changing user 6's `username` from Alex to Alexandru, and `email` from alex@yahho.com to newEmail@yahoo.com
 
 ```
 {
@@ -134,8 +135,8 @@ A successful post will return the updated user ID and a message. For example, th
 
 ```
 {
-    "updateID": 6,
-    "message": "Update succesfully"
+    "updateID": "2",
+    "message": "User: Alexandru Update succesfully"
 }
 ```
 
@@ -143,10 +144,154 @@ A successful post will return the updated user ID and a message. For example, th
 
 URL: /api/users/:id
 
-A successful delete will return a object a message, for example deleting a user succesfully will return:
+Nothing required, can change as few or as many things as wanted.
+
+A successful delete will return a object with a message, for example deleting a user succesfully will return:
 
 ```
 {
     "message": "Delete Succesfully"
+}
+```
+
+## GET all Items/Inventory from database
+
+URL: /api/users/:id/items
+
+The respone will include the decoded tokend contains the id,email and role of the current user
+This route is restricted - a authorization header with the token its required
+
+Example Data for /api/users/items:
+
+```
+{
+    "items": [
+        {
+            "id": 1,
+            "name": "Stone fruit",
+            "amount": 12,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/SCAVfIV.jpg",
+            "categoryID": 2
+        },
+        {
+            "id": 2,
+            "name": "carrots",
+            "amount": 15,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/NdX1vFQ.jpg",
+            "categoryID": 1
+        },
+        {
+            "id": 3,
+            "name": "cereal",
+            "amount": 3,
+            "unit": "gal",
+            "image": "https://i.imgur.com/dGWUJEj.jpg",
+            "categoryID": 4
+        },
+        {
+    ],
+    "decodedToken": {
+        "subject": 4,
+        "role": "manager",
+        "email": "cata@yahoo.com",
+        "iat": 1555256198,
+        "exp": 1555328198
+    }
+}
+```
+
+## GET Items by Id from database
+
+URL: /api/users/items/:id
+
+The respone will include the decoded tokend contains the id,email and role of the current user
+This route is restricted - a authorization header with the token its required
+
+Example Data for /api/users/items/2:
+
+```
+{
+    "item": {
+        "id": 2,
+        "name": "carrots",
+        "amount": 15,
+        "unit": "lbs",
+        "image": "https://i.imgur.com/NdX1vFQ.jpg",
+        "categoryID": 1
+    },
+    "decodedToken": {
+        "subject": 4,
+        "role": "manager",
+        "email": "cata@yahoo.com",
+        "iat": 1555256198,
+        "exp": 1555328198
+    }
+}
+```
+
+## POST Items
+
+URL: /api/items
+
+This route is restricted - a authorization header with the token its required
+
+The API does not _require_ every section to be provided. Require fields: name and amout.
+
+```
+{
+	"name":"Magic",
+	"amount":"12 lbs"
+}
+```
+
+A successfully created item will return a object with the posted item:
+
+```
+{
+    "id": 13,
+    "name": "Magic",
+    "amount": "12 lbs",
+    "unit": null,
+    "image": null,
+    "categoryID": null
+}
+```
+
+## EDIT (PUT) Items
+
+URL: /api/items/:id
+
+This route is restricted - a authorization header with the token its required
+
+The API does not _require_ every section to be provided. Front End architects may choose what is required on their descretion. Here is what a an edit with only the name changed will look like for user 2. Name, amount and category is being changed:
+
+```
+   {
+        "name": "pattato",
+        "amount": 25,
+        "unit": "lbs",
+        "categoryID": 3
+    }
+```
+
+If succesfully the messege will be returned:
+
+```
+{
+    "message": "Item pattato was succesfully edited"
+}
+```
+
+## DELETE Items
+
+URL: /api/items/:id
+
+A successful delete will return a message:
+
+```
+{
+    "message": "Item succesfully deleted"
 }
 ```

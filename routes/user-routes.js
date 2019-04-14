@@ -185,8 +185,8 @@ router.put("/api/users/:id", async (req, res) => {
     const result = await userHelpers.updateUser(id, user);
     if (result === 1) {
       res.status(200).json({
-        updateID: result,
-        message: "Update succesfully"
+        updateID: id,
+        message: `User: ${user.name} Update succesfully`
       });
     } else {
       res.status(404).json({ message: "User not found" });

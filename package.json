@@ -25,7 +25,13 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seedUsers": "knex seed:make 01-users",
-    "runseedUsers": "knex seed:run 01-users"
+    "runseedUsers": "knex seed:run 01-users",
+    "tableItems": "knex migrate:make itemsTable",
+    "seedItems": "knex seed:make 01-items",
+    "runseedItems": "knex seed:run 01-items",
+    "tableCategories": "knex migrate:make categoriesTable",
+    "seedCategories": "knex seed:make 01-categories",
+    "runseedCategories": "knex seed:run 01-categories"
   },
   "repository": {
     "type": "git",
