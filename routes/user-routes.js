@@ -154,7 +154,7 @@ router.get("/api/users", restricted, async (req, res) => {
 /**
  * Get Users by id
  * 
- * * Exemple of Response from the server
+ * Exemple of Response from the server
 {
     "id": 4,
     "name": "Mia",
@@ -171,6 +171,28 @@ router.get("/api/users/:id", restricted, async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ error: "error trying to get user by id" });
+  }
+});
+
+/**
+ * Udate User
+ */
+router.put("/api/users/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = req.body;
+
+  try {
+    const result = await userHelpers.updateUser(id, user);
+    if (result === 1) {
+      res.status(200).json({
+        updateID: result,
+        message: "Update succesfully"
+      });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "error trying to update user" });
   }
 });
 
