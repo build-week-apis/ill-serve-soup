@@ -53,7 +53,6 @@ router.get("/api/items/:id", restricted, async (req, res) => {
 /**
  * Endpoint for Add a item in database
  */
-
 router.post("/api/items", async (req, res) => {
   const { name, amount } = req.body;
   if (name && amount) {
@@ -69,6 +68,29 @@ router.post("/api/items", async (req, res) => {
     res
       .status(401)
       .json({ message: "please provide name and amount for the item" });
+  }
+});
+
+/**
+ * Endpoint for Edit a item from database
+ */
+router.put("/api/items/:id", async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+
+  try {
+    const result = await itemHelpers.updateItem(id, body);
+    if (result) {
+      res
+        .status(200)
+        .json({ message: `Item ${body.name} was succesfully edited` });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "there was a error trying to edit the user" });
   }
 });
 

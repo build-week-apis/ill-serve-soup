@@ -235,6 +235,9 @@ Example Data for /api/users/items/2:
 
 URL: /api/items
 
+The respone will include the decoded tokend contains the id,email and role of the current user
+This route is restricted - a authorization header with the token its required
+
 The API does not _require_ every section to be provided. Reguire fields: name and amout.
 
 ```

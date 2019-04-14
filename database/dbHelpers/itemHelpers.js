@@ -22,7 +22,9 @@ async function addItem(itm) {
 }
 
 async function updateItem(id, item) {
-  const result = await "items".where({ id }).update(item);
+  const result = await db("items")
+    .where({ id })
+    .update(item);
 
   return result;
 }
