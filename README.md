@@ -201,3 +201,32 @@ Example Data for /api/users/items:
     }
 }
 ```
+
+## GET Items by Id from database
+
+URL: /api/users/items/:id
+
+The respone will include the decoded tokend contains the id,email and role of the current user
+This route is restricted - a authorization header with the token its required
+
+Example Data for /api/users/items/2:
+
+```
+{
+    "item": {
+        "id": 2,
+        "name": "carrots",
+        "amount": 15,
+        "unit": "lbs",
+        "image": "https://i.imgur.com/NdX1vFQ.jpg",
+        "categoryID": 1
+    },
+    "decodedToken": {
+        "subject": 4,
+        "role": "manager",
+        "email": "cata@yahoo.com",
+        "iat": 1555256198,
+        "exp": 1555328198
+    }
+}
+```
