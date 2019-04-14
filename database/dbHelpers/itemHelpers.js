@@ -14,7 +14,30 @@ async function getItemById(id) {
   return item;
 }
 
+async function addItem(item) {
+  const ids = await db("items").insert(item);
+  const item = getItemById(ids);
+
+  return item;
+}
+
+async function updateItem(id, item) {
+  const result = await "items".where({ id }).update(item);
+
+  return result;
+}
+
+async function deleteItem(id) {
+  const result = await db("items")
+    .where({ id })
+    .del();
+
+  return result;
+}
+
 module.exports = {
   getAllItems,
-  getItemById
+  getItemById,
+  updateItem,
+  deleteItem
 };
