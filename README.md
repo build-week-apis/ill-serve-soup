@@ -235,10 +235,9 @@ Example Data for /api/users/items/2:
 
 URL: /api/items
 
-The respone will include the decoded tokend contains the id,email and role of the current user
 This route is restricted - a authorization header with the token its required
 
-The API does not _require_ every section to be provided. Reguire fields: name and amout.
+The API does not _require_ every section to be provided. Require fields: name and amout.
 
 ```
 {
@@ -263,6 +262,8 @@ A successfully created item will return a object with the posted item:
 ## EDIT (PUT) Items
 
 URL: /api/items/:id
+
+This route is restricted - a authorization header with the token its required
 
 The API does not _require_ every section to be provided. Front End architects may choose what is required on their descretion. Here is what a an edit with only the name changed will look like for user 2. Name, amount and category is being changed:
 

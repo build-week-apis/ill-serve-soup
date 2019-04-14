@@ -53,7 +53,7 @@ router.get("/api/items/:id", restricted, async (req, res) => {
 /**
  * Endpoint for Add a item in database
  */
-router.post("/api/items", async (req, res) => {
+router.post("/api/items", restricted, async (req, res) => {
   const { name, amount } = req.body;
   if (name && amount) {
     try {
@@ -74,7 +74,7 @@ router.post("/api/items", async (req, res) => {
 /**
  * Endpoint for Edit a item from database
  */
-router.put("/api/items/:id", async (req, res) => {
+router.put("/api/items/:id", restrected, async (req, res) => {
   const { id } = req.params;
   const body = req.body;
 
