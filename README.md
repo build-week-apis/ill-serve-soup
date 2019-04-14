@@ -259,3 +259,26 @@ A successfully created item will return a object with the posted item:
     "categoryID": null
 }
 ```
+
+## EDIT (PUT) Items
+
+URL: /api/items/:id
+
+The API does not _require_ every section to be provided. Front End architects may choose what is required on their descretion. Here is what a an edit with only the name changed will look like for user 2. Name, amount and category is being changed:
+
+```
+   {
+        "name": "pattato",
+        "amount": 25,
+        "unit": "lbs",
+        "categoryID": 3
+    }
+```
+
+If succesfully the messege will be returned:
+
+```
+{
+    "message": "Item pattato was succesfully edited"
+}
+```
