@@ -94,3 +94,26 @@ If Successful, response should be 200 (OK). If unsuccessful, response should be 
     }
 }
 ```
+
+## GET Users By ID
+
+a **GET** request to \_/api/users will return the user with specified ID
+
+URL: /api/users/:id
+
+This route is restricted - a authorization header with the token its required
+
+If Successful, response should be 200 (OK). If unsuccessful, response should be 500. should get a response of:
+
+```
+{
+    "id": 4,
+    "name": "Mia",
+    "email": "mia@yahoo.com",
+    "password": "$2a$12$0orwA4XSCWlVZsH7.8HTO.blezw1IGMZv.cO9B5bvlDWYntORbqma",
+    "role": "admin"
+}
+
+```
+
+
