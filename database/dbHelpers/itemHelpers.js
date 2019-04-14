@@ -6,6 +6,15 @@ async function getAllItems() {
   return allItems;
 }
 
+async function getItemById(id) {
+  const item = await db("items")
+    .where({ id })
+    .first();
+
+  return item;
+}
+
 module.exports = {
-  getAllItems
+  getAllItems,
+  getItemById
 };
