@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-//const restricted = require("../middleware/restrictedRoute");  for later
+const restricted = require("../middleware/tokenRestricted");
 //const checkRole = require("../middleware/roleCheck");  for later
 
 const userHelpers = require("../database/dbHelpers/userHelpers.js");
@@ -108,6 +108,111 @@ router.post("/api/users/login", (req, res) => {
       });
   } else {
     res.status(400).json({ message: "please provide username and password" });
+  }
+});
+
+/**
+ *  * [GET] /api/register
+ *
+ * Endpoint for Getting all the users 
+ * 
+ * Requirements: need authorization header with token
+ *               need role of user: Admin || Staff
+ *
+ * Exemple of Response from the server
+ {[
+         {
+            "id": 14,
+            "name": "Mia",
+            "email": "mia@yahoo.com",
+            "password": "$2a$12$kFQU7QYCQrq.SA5Wk7JUAOPVjERLaBY44kkEMh/1qHE9yos1nYrLW",
+            "role": "manager"
+        }
+    ],
+    "decoded": {
+        "subject": 14,
+        "role": "manager",
+        "email": "mia@yahoo.com",
+        "iat": 1555164970,
+        "exp": 1555236970
+    }
+}
+ *
+ */
+router.get("/api/users", restricted, async (req, res) => {
+  try {
+    const users = await userHelpers.getAllUsers();
+    res.status(200).json({
+      users,
+      decoded: req.decodedToken
+    });
+  } catch (error) {
+    res.status(500).json({ error: "error trying to get users" });
+  }
+});
+
+/**
+ * Get Users by id
+ * 
+ * Exemple of Response from the server
+{
+    "id": 4,
+    "name": "Mia",
+    "email": "mia@yahoo.com",
+    "password": "$2a$12$0orwA4XSCWlVZsH7.8HTO.blezw1IGMZv.cO9B5bvlDWYntORbqma",
+    "role": "manager"
+}
+ */
+router.get("/api/users/:id", restricted, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await userHelpers.getUserById(id);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: "error trying to get user by id" });
+  }
+});
+
+/**
+ * Udate User
+ */
+router.put("/api/users/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = req.body;
+
+  try {
+    const result = await userHelpers.updateUser(id, user);
+    if (result === 1) {
+      res.status(200).json({
+        updateID: result,
+        message: "Update succesfully"
+      });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "error trying to update user" });
+  }
+});
+
+/**
+ * Delete User
+ */
+router.delete("/api/users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await userHelpers.deleteUser(id);
+    if (result === 1) {
+      res.status(200).json({
+        message: "Delete Succesfully"
+      });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "error trying to delete user" });
   }
 });
 

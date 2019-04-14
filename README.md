@@ -49,3 +49,104 @@ Form will need `username` and `password`. If posted correctly, should get a resp
     "id": 5
 }
 ```
+
+## GET ALL Users
+
+a **GET** request to \_/api/users will return all the users existing in database
+
+URL: /api/users/
+
+This route is restricted - a authorization header with the token its required
+
+If Successful, response should be 200 (OK). If unsuccessful, response should be 500. Example users data:
+
+```
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Mihai",
+            "email": "mihsi@yahoo.com",
+            "password": "123",
+            "role": "manager"
+        },
+        {
+            "id": 2,
+            "name": "Ion",
+            "email": "ion@yahoo.com",
+            "password": "123",
+            "role": "volunteer"
+        },
+        {
+            "id": 3,
+            "name": "Maria",
+            "email": "maria@yahoo.com",
+            "password": "123",
+            "role": "manager"
+        },
+    ],
+    "decoded": {
+        "subject": 7,
+        "role": "manager",
+        "email": "cata@yahoo.com",
+        "iat": 1555192150,
+        "exp": 1555264150
+    }
+}
+```
+
+## GET Users By ID
+
+a **GET** request to \_/api/users will return the user with specified ID
+
+URL: /api/users/:id
+
+This route is restricted - a authorization header with the token its required
+
+If Successful, response should be 200 (OK). If unsuccessful, response should be 500. should get a response of:
+
+```
+{
+    "id": 4,
+    "name": "Mia",
+    "email": "mia@yahoo.com",
+    "role": "admin"
+}
+
+```
+
+## EDIT (PUT) User
+
+URL: /api/users/:id
+
+This route is restricted - a authorization header with the token its required
+
+Example: Changing user 2's `username` from Sam to test, and `funds_balance` from 0 to 25:
+
+```
+{
+	"name": "Alexadru",
+	"email": "newEmail@yahoo.com
+}
+```
+
+A successful post will return the updated user ID and a message. For example, the above edit will return:
+
+```
+{
+    "updateID": 6,
+    "message": "Update succesfully"
+}
+```
+
+## DELETE User
+
+URL: /api/users/:id
+
+A successful delete will return a object a message, for example deleting a user succesfully will return:
+
+```
+{
+    "message": "Delete Succesfully"
+}
+```
