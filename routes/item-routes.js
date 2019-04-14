@@ -50,4 +50,26 @@ router.get("/api/items/:id", restricted, async (req, res) => {
   }
 });
 
+/**
+ * Endpoint for Add a item in database
+ */
+
+router.post("/api/items", async (req, res) => {
+  const { name, amount } = req.body;
+  if (name && amount) {
+    try {
+      const item = await itemHelpers.addItem(req.body);
+      res.status(201).json(item);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "there was a error trying to add item in database" });
+    }
+  } else {
+    res
+      .status(401)
+      .json({ message: "please provide name and amount for the item" });
+  }
+});
+
 module.exports = router;

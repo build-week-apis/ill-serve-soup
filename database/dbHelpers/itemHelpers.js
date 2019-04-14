@@ -14,8 +14,8 @@ async function getItemById(id) {
   return item;
 }
 
-async function addItem(item) {
-  const ids = await db("items").insert(item);
+async function addItem(itm) {
+  const [ids] = await db("items").insert(itm);
   const item = getItemById(ids);
 
   return item;
@@ -39,5 +39,6 @@ module.exports = {
   getAllItems,
   getItemById,
   updateItem,
-  deleteItem
+  deleteItem,
+  addItem
 };
