@@ -138,3 +138,15 @@ A successful post will return the updated user ID and a message. For example, th
     "message": "Update succesfully"
 }
 ```
+
+## DELETE User
+
+URL: /api/users/:id
+
+A successful delete will return a object a message, for example deleting a user succesfully will return:
+
+```
+{
+    "message": "Delete Succesfully"
+}
+```
