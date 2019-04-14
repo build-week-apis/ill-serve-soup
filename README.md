@@ -56,6 +56,8 @@ a **GET** request to \_/api/users will return all the users existing in database
 
 URL: /api/users/
 
+This route is restricted - a authorization header with the token its required
+
 If Successful, response should be 200 (OK). If unsuccessful, response should be 500. Example users data:
 
 ```

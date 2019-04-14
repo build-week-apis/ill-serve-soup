@@ -151,4 +151,27 @@ router.get("/api/users", restricted, async (req, res) => {
   }
 });
 
+/**
+ * Get Users by id
+ * 
+ * * Exemple of Response from the server
+{
+    "id": 4,
+    "name": "Mia",
+    "email": "mia@yahoo.com",
+    "password": "$2a$12$0orwA4XSCWlVZsH7.8HTO.blezw1IGMZv.cO9B5bvlDWYntORbqma",
+    "role": "manager"
+}
+ */
+router.get("/api/users/:id", restricted, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await userHelpers.getUserById(id);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: "error trying to get user by id" });
+  }
+});
+
 module.exports = router;
