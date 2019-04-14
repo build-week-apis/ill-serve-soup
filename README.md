@@ -283,3 +283,15 @@ If succesfully the messege will be returned:
     "message": "Item pattato was succesfully edited"
 }
 ```
+
+## DELETE Items
+
+URL: /api/items/:id
+
+A successful delete will return a message:
+
+```
+{
+    "message": "Item succesfully deleted"
+}
+```
