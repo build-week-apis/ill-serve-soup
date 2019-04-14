@@ -110,7 +110,6 @@ If Successful, response should be 200 (OK). If unsuccessful, response should be 
     "id": 4,
     "name": "Mia",
     "email": "mia@yahoo.com",
-    "password": "$2a$12$0orwA4XSCWlVZsH7.8HTO.blezw1IGMZv.cO9B5bvlDWYntORbqma",
     "role": "admin"
 }
 

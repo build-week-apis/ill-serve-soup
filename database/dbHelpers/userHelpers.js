@@ -34,6 +34,7 @@ function findUserByRole(role) {
 
 function getUserById(id) {
   return db("users")
+    .select("id", "name", "email", "role")
     .where({ id })
     .first();
 }
