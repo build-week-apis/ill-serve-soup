@@ -115,4 +115,26 @@ If Successful, response should be 200 (OK). If unsuccessful, response should be 
 
 ```
 
+## EDIT (PUT) User
 
+URL: /api/users/:id
+
+This route is restricted - a authorization header with the token its required
+
+Example: Changing user 2's `username` from Sam to test, and `funds_balance` from 0 to 25:
+
+```
+{
+	"name": "Alexadru",
+	"email": "newEmail@yahoo.com
+}
+```
+
+A successful post will return the updated user ID and a message. For example, the above edit will return:
+
+```
+{
+    "updateID": 6,
+    "message": "Update succesfully"
+}
+```
