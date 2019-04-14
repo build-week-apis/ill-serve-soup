@@ -1,7 +1,7 @@
 const db = require("../dbConfig");
 
-async function getALlItems() {
-  const getAllItems = await db("items");
+async function getAllItems() {
+  const allItems = await db("items");
 
   return allItems;
 }

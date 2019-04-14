@@ -4,6 +4,7 @@ const cors = require("cors");
 
 //routes import - nothing for now
 const userRoutes = require("../routes/user-routes");
+const itemRoutes = require("../routes/item-routes");
 
 const server = express();
 
@@ -13,5 +14,6 @@ server.use(express.json());
 
 //server.use(routes)
 server.use(userRoutes);
+server.use(itemRoutes);
 
 module.exports = server;
