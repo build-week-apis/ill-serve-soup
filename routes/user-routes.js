@@ -26,7 +26,7 @@ router.post("/api/users/register", (req, res) => {
   const hash = bcrypt.hashSync(creds.password, 12);
   creds.password = hash;
 
-  if (creds.name && creds.password && creds.email) {
+  if (creds.name && creds.password && creds.email && creds.role) {
     userHelpers
       .registerUser(creds)
       .then(user => {
@@ -112,7 +112,7 @@ router.post("/api/users/login", (req, res) => {
 });
 
 /**
- *  * [GET] /api/register
+ *  * [GET] /api/users
  *
  * Endpoint for Getting all the users 
  * 
@@ -168,7 +168,11 @@ router.get("/api/users/:id", restricted, async (req, res) => {
 
   try {
     const user = await userHelpers.getUserById(id);
-    res.status(200).json(user);
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ message: "Id not found" });
+    }
   } catch (error) {
     res.status(500).json({ error: "error trying to get user by id" });
   }
