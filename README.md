@@ -10,6 +10,7 @@ This is the back-end for the I'll serve soup, which is part of Lambda School Bui
 
 a **POST** request to _/api/users/register_ will create a new user and return an object
 
+Form will need `name` , `password` , `email` and `role` that are require for registration a user
 URL: /api/users/register
 
 Example data:
@@ -33,9 +34,17 @@ If posted succesfully, the username will be returned. Example:
 }
 ```
 
+If require field are not preset it will return a object with message:
+
+```
+{
+    "message": "please provide name, password email and role for the user"
+}
+```
+
 ## LOGIN (POST) User
 
-a **POST** request to \_/api/users/login will create a new user and return an object
+a **POST** request to \_/api/users/login will return an object
 
 URL: /api/users/login
 
@@ -47,6 +56,14 @@ Form will need `username` and `password`. If posted correctly, should get a resp
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo1LCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNvcmluQHlhaG9vLmNvbSIsImlhdCI6MTU1NTE5MTE4NiwiZXhwIjoxNTU1MjYzMTg2fQ.bmynQf4cFPjY3xRbf1aL5zdi90Fk7Kq51lcFX5smPQg",
     "role": "manager",
     "id": 5
+}
+```
+
+If require field are not preset it will return a object with message:
+
+```
+{
+    "message": "please provide username and password"
 }
 ```
 
@@ -96,6 +113,14 @@ If Successful, response should be 200 (OK). If unsuccessful, response should be 
 }
 ```
 
+In case the token is not present in the header it will respond with:
+
+```
+{
+    "message": "Invalid Credentials"
+}
+```
+
 ## GET Users By ID
 
 a **GET** request to \_/api/users will return the user with specified ID
@@ -104,7 +129,7 @@ URL: /api/users/:id
 
 This route is restricted - a authorization header with the token its required
 
-If Successful, response should be 200 (OK). If unsuccessful, response should be 500. should get a response of:
+If Successful, response should be 200 (OK), should get a response of:
 
 ```
 {
@@ -115,6 +140,16 @@ If Successful, response should be 200 (OK). If unsuccessful, response should be 
 }
 
 ```
+
+If id does't exist in database will response with 404 and a message:
+
+```
+{
+    "message": "Id not found"
+}
+```
+
+If unsuccessful, response should be 500
 
 ## EDIT (PUT) User
 
@@ -140,6 +175,23 @@ A successful post will return the updated user ID and a message. For example, th
 }
 ```
 
+If user with specified ID does't exist in database will response with 404 and a message:
+
+```
+{
+    "message": "User not found"
+}
+```
+
+If unsuccessful, response should be 500 and a message:
+
+```
+{
+    "error": "error trying to update user"
+}
+```
+
+
 ## DELETE User
 
 URL: /api/users/:id
@@ -151,6 +203,14 @@ A successful delete will return a object with a message, for example deleting a 
 ```
 {
     "message": "Delete Succesfully"
+}
+```
+
+If user with specified ID does't exist in database will response with 404 and a message:
+
+```
+{
+    "message": "User not found"
 }
 ```
 
