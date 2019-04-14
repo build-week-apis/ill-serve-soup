@@ -45,7 +45,7 @@ router.get("/api/items/:id", restricted, async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      error: "there was a error trying to get a user by id from database"
+      error: "there was a error trying to get a item by id from database"
     });
   }
 });
@@ -74,7 +74,7 @@ router.post("/api/items", restricted, async (req, res) => {
 /**
  * Endpoint for Edit a item from database
  */
-router.put("/api/items/:id", restrected, async (req, res) => {
+router.put("/api/items/:id", restricted, async (req, res) => {
   const { id } = req.params;
   const body = req.body;
 
@@ -85,12 +85,32 @@ router.put("/api/items/:id", restrected, async (req, res) => {
         .status(200)
         .json({ message: `Item ${body.name} was succesfully edited` });
     } else {
-      res.status(404).json({ message: "User not found" });
+      res.status(404).json({ message: "Item not found" });
     }
   } catch (error) {
     res
       .status(500)
-      .json({ error: "there was a error trying to edit the user" });
+      .json({ error: "there was a error trying to edit the item" });
+  }
+});
+
+/**
+ * Endpoint for Deleting a item
+ */
+router.delete("/api/items/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await itemHelpers.deleteItem(id);
+    if (result) {
+      res.status(200).json({ message: "Item succesfully deleted" });
+    } else {
+      res.status(404).json({ message: "Item not found" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: "there was a error trying to delete the item from database"
+    });
   }
 });
 
