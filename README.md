@@ -145,7 +145,7 @@ URL: /api/users/:id
 
 Nothing required, can change as few or as many things as wanted.
 
-A successful delete will return a object a message, for example deleting a user succesfully will return:
+A successful delete will return a object with a message, for example deleting a user succesfully will return:
 
 ```
 {
