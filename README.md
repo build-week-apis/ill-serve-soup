@@ -466,3 +466,44 @@ In case the token is not present in the header it will respond with:
     "message": "Invalid Credentials"
 }
 ```
+
+## POST Category
+
+URL: /api/categories
+
+This route is restricted - a authorization header with the token its required
+
+The API _require_ require fields: name
+
+```
+{
+	"name":"newCategory"
+}
+```
+
+A successfully created item will return a object with the posted item:
+
+```
+{
+    "category": {
+        "id": 15,
+        "name": "newCategory",
+        "items": []
+    },
+    "decodedToken": {
+        "subject": 7,
+        "role": "manager",
+        "email": "jack@yahoo.com",
+        "iat": 1555321024,
+        "exp": 1555393024
+    }
+}
+```
+
+If name field are not preset it will return a object with message:
+
+```
+{
+    "error": "please provide a name for the category"
+}
+```

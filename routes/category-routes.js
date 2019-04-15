@@ -43,13 +43,16 @@ router.get("/api/categories/:id", async (req, res) => {
 /**
  * Add a category to database
  */
-router.post("/api/categories", async (req, res) => {
+router.post("/api/categories", restricted, async (req, res) => {
   const body = req.body;
 
   if (body.name) {
     try {
-      const result = await catHelpers.addCategory(body);
-      res.status(201).json(result);
+      const category = await catHelpers.addCategory(body);
+      res.status(201).json({
+        category,
+        decodedToken: req.decodedToken
+      });
     } catch (error) {
       res
         .status(500)
