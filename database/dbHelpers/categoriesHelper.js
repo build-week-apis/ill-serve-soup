@@ -71,6 +71,13 @@ async function updateCategory(id, category) {
   return result;
 }
 
+async function deleteCategory(id) {
+  const result = await db("categories")
+    .where({ id })
+    .del();
+
+  return result;
+}
 module.exports = {
   getAllCategories,
   getCategoriesById,
