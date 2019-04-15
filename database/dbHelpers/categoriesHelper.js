@@ -74,5 +74,6 @@ async function updateCategory(id, category) {
 module.exports = {
   getAllCategories,
   getCategoriesById,
-  addCategory
+  addCategory,
+  updateCategory
 };

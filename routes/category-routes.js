@@ -66,14 +66,21 @@ router.post("/api/categories", restricted, async (req, res) => {
 /**
  * Update a category
  */
-router.put("api/categories", async (req, res) => {
+router.put("/api/categories/:id", async (req, res) => {
   const { id } = req.params;
   const body = req.body;
 
   try {
-      
+    const result = await catHelpers.updateCategory(id, body);
+    if (result) {
+      res
+        .status(200)
+        .json({ message: `Category: ${body.name} was update succesfully` });
+    } else {
+      res.status(404).json({ message: "Category not found" });
+    }
   } catch (error) {
-      
+    res.status(500).json({ error: "error trying to edit the user" });
   }
 });
 
