@@ -63,6 +63,14 @@ async function addCategory(category) {
   return newCategory;
 }
 
+async function updateCategory(id, category) {
+  const result = await db("categories")
+    .where({ id })
+    .update(category);
+
+  return result;
+}
+
 module.exports = {
   getAllCategories,
   getCategoriesById,

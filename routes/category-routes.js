@@ -63,4 +63,18 @@ router.post("/api/categories", restricted, async (req, res) => {
   }
 });
 
+/**
+ * Update a category
+ */
+router.put("api/categories", async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+
+  try {
+      
+  } catch (error) {
+      
+  }
+});
+
 module.exports = router;
