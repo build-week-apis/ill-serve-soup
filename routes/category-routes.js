@@ -21,4 +21,19 @@ router.get("/api/categories", restricted, async (req, res) => {
   }
 });
 
+/**
+ * Get categori by id
+ */
+
+router.get("/api/categories/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const category = await catHelpers.getCategoriesById(id);
+    res.status(200).json(category);
+  } catch (error) {
+    res.status(500).json({ error: "error trying to get a category by id" });
+  }
+});
+
 module.exports = router;
