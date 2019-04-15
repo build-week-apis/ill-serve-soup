@@ -30,7 +30,11 @@ router.get("/api/categories/:id", async (req, res) => {
 
   try {
     const category = await catHelpers.getCategoriesById(id);
-    res.status(200).json(category);
+    if (category) {
+      res.status(200).json(category);
+    } else {
+      res.status(404).json({ message: "Category not found" });
+    }
   } catch (error) {
     res.status(500).json({ error: "error trying to get a category by id" });
   }

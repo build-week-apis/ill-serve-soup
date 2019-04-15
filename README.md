@@ -224,12 +224,12 @@ If user with specified ID does't exist in database will response with 404 and a 
 
 ## GET all Items/Inventory from database
 
-URL: /api/users/:id/items
+URL: /api/users/items
 
 The respone will include the decoded tokend contains the id,email and role of the current user
 This route is restricted - a authorization header with the token its required
 
-Example Data for /api/users/items:
+Example Data for /api/items:
 
 ```
 {
@@ -268,7 +268,7 @@ Example Data for /api/users/items:
 
 ## GET Items by Id from database
 
-URL: /api/users/items/:id
+URL: /api/items/:id
 
 The respone will include the decoded tokend contains the id,email and role of the current user
 This route is restricted - a authorization header with the token its required
@@ -348,7 +348,7 @@ If succesfully the messege will be returned:
 }
 ```
 
-## DELETE Items
+## DELETE (DELETE) Items
 
 URL: /api/items/:id
 
@@ -357,5 +357,112 @@ A successful delete will return a message:
 ```
 {
     "message": "Item succesfully deleted"
+}
+```
+
+## GET all Categoris from database
+
+URL: /api/categories
+
+The respone will include the decoded tokend contains the id,email and role of the current user
+This route is restricted - a authorization header with the token its required
+
+Example Data for /api/categories:
+
+```
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "chicken"
+        },
+        {
+            "id": 2,
+            "name": "fruits"
+        },
+        {
+            "id": 3,
+            "name": "herbal"
+        },
+        {
+            "id": 4,
+            "name": "proteins"
+        },
+        {
+            "id": 5,
+            "name": "cream"
+        },
+        {
+            "id": 6,
+            "name": "instant"
+        },
+        {
+            "id": 7,
+            "name": "noodle"
+        },
+        {
+            "id": 8,
+            "name": "fish"
+        },
+        {
+            "id": 9,
+            "name": "bread"
+        },
+        {
+            "id": 10,
+            "name": "bisque"
+        }
+    ],
+    "decodedToken": {
+        "subject": 7,
+        "role": "manager",
+        "email": "jack@yahoo.com",
+        "iat": 1555321024,
+        "exp": 1555393024
+    }
+}
+```
+
+## GET Categories by Id from database
+
+URL: /api/categories/:id
+
+The respone will include the decoded tokend contains the id,email and role of the current user
+This route is restricted - a authorization header with the token its required
+
+Example Data for /api/users/items/2:
+
+```
+{
+    "id": 2,
+    "name": "fruits",
+    "items": [
+        {
+            "id": 1,
+            "name": "Stone fruit",
+            "amount": 12,
+            "unit": "lbs",
+            "image": "https://i.imgur.com/SCAVfIV.jpg",
+            "categoryID": 2
+        },
+        {
+            "id": 14,
+            "name": "test",
+            "amount": "12 lbs",
+            "unit": "kg",
+            "image": "null",
+            "categoryID": 2
+        }
+    ]
+}
+```
+
+If unsuccessful, response should be 500
+
+In case the token is not present in the header it will respond with:
+
+```
+{
+    "message": "Invalid Credentials"
 }
 ```
