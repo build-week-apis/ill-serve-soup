@@ -26,7 +26,7 @@ Example data:
 }
 ```
 
-If posted succesfully, tit will return a object with message:
+If posted succesfully, will return a object with message:
 
 ```
 {
