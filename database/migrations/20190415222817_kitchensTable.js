@@ -13,7 +13,7 @@ exports.up = function(knex, Promise) {
       .string("mission", 300)
       .notNullable()
       .unique();
-    table.integer("average_visitors");
+    table.float("average_visitors");
     table.string("website");
   });
 };

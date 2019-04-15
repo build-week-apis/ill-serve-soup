@@ -24,7 +24,7 @@ exports.seed = function(knex, Promise) {
         {
           id: 3,
           name: "cereal",
-          amount: "3",
+          amount: 3,
           unit: "gal",
           image: "https://i.imgur.com/dGWUJEj.jpg",
           categoryID: 4
@@ -32,7 +32,7 @@ exports.seed = function(knex, Promise) {
         {
           id: 4,
           name: "cheese",
-          amount: "5",
+          amount: 5,
           unit: "lbs",
           image: "https://i.imgur.com/Tl318Os.jpg",
           categoryID: 4
@@ -40,7 +40,7 @@ exports.seed = function(knex, Promise) {
         {
           id: 5,
           name: "bread",
-          amount: "3",
+          amount: 3,
           unit: "lbs",
           image: "https://i.imgur.com/mUyhf6x.jpg",
           categoryID: 9
@@ -48,7 +48,7 @@ exports.seed = function(knex, Promise) {
         {
           id: 6,
           name: "bacon",
-          amount: "3",
+          amount: 3,
           unit: "lbs",
           image: "https://i.imgur.com/wIoynYP.jpg",
           categoryID: 7
@@ -56,7 +56,7 @@ exports.seed = function(knex, Promise) {
         {
           id: 7,
           name: "Chunky",
-          amount: "5",
+          amount: 5,
           unit: "lbs",
           image: "https://i.imgur.com/sIshItO.jpg",
           categoryID: 8
