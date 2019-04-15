@@ -32,7 +32,10 @@
     "runseedItems": "knex seed:run 01-items",
     "tableCategories": "knex migrate:make categoriesTable",
     "seedCategories": "knex seed:make 01-categories",
-    "runseedCategories": "knex seed:run 01-categories"
+    "runseedCategories": "knex seed:run 01-categories",
+    "tableKitchens": "knex migrate:make kitchensTable",
+    "seedKitchens": "knex seed:make 01-kitchens",
+    "runSeedKitchens": "knex seed:run 01-kitchens"
   },
   "repository": {
     "type": "git",
