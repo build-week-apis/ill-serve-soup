@@ -22,7 +22,7 @@ router.get("/api/categories", restricted, async (req, res) => {
 });
 
 /**
- * Get categori by id
+ * Get category by id
  */
 
 router.get("/api/categories/:id", async (req, res) => {
@@ -37,6 +37,26 @@ router.get("/api/categories/:id", async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: "error trying to get a category by id" });
+  }
+});
+
+/**
+ * Add a category to database
+ */
+router.post("/api/categories", async (req, res) => {
+  const body = req.body;
+
+  if (body.name) {
+    try {
+      const result = await catHelpers.addCategory(body);
+      res.status(201).json(result);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "error trying to add a new category in database" });
+    }
+  } else {
+    res.status(401).json({ error: "please provide a name for the category" });
   }
 });
 

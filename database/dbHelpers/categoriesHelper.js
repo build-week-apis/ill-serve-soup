@@ -57,7 +57,7 @@ async function getCategoriesById(id) {
 }
 
 async function addCategory(category) {
-  const [id] = db("categories").insert(category);
+  const [id] = await db("categories").insert(category);
   const newCategory = getCategoriesById(id);
 
   return newCategory;
