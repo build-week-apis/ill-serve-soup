@@ -80,7 +80,7 @@ router.put("/api/categories/:id", async (req, res) => {
       res.status(404).json({ message: "Category not found" });
     }
   } catch (error) {
-    res.status(500).json({ error: "error trying to edit the user" });
+    res.status(500).json({ error: "error trying to edit category" });
   }
 });
 

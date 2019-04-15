@@ -6,7 +6,7 @@ This is the back-end for the I'll serve soup, which is part of Lambda School Bui
 
 # Instructions
 
-All API requests are made to: **_https://kitchen-soup-backend.herokuapp.com_**
+All API requests are made to: **_ https://kitchen-soup-backend.herokuapp.com _**
 
 ## REGISTER (POST) User
 
@@ -505,5 +505,43 @@ If name field are not preset it will return a object with message:
 ```
 {
     "error": "please provide a name for the category"
+}
+```
+
+## EDIT (PUT) Categories
+
+URL: /api/categories/:id
+
+Nothing required, can change as few or as many things as wanted.
+
+Example: Changing category 's `name` from fish to bird
+
+```
+{
+    "name": "bird",
+}
+```
+
+A successful post will return the updated user ID and a message. For example, the above edit will return:
+
+```
+{
+    "message": "Category: bird was update succesfully"
+}
+```
+
+If category with specified ID does't exist in database will response with 404 and a message:
+
+```
+{
+    "message": "Category not found"
+}
+```
+
+If unsuccessful, response should be 500 and a message:
+
+```
+{
+    error: "error trying to edit category"
 }
 ```
