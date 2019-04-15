@@ -4,7 +4,9 @@
 
 This is the back-end for the I'll serve soup, which is part of Lambda School Build Week Project.
 
-# MVP
+# Instructions
+
+All API requests are made to: **_https://kitchen-soup-backend.herokuapp.com_**
 
 ## REGISTER (POST) User
 
@@ -24,7 +26,7 @@ Example data:
 }
 ```
 
-If posted succesfully, the username will be returned. Example:
+If posted succesfully, tit will return a object with message:
 
 ```
 {
@@ -138,7 +140,6 @@ If Successful, response should be 200 (OK), should get a response of:
     "email": "mia@yahoo.com",
     "role": "admin"
 }
-
 ```
 
 If id does't exist in database will response with 404 and a message:
@@ -151,18 +152,26 @@ If id does't exist in database will response with 404 and a message:
 
 If unsuccessful, response should be 500
 
+In case the token is not present in the header it will respond with:
+
+```
+{
+    "message": "Invalid Credentials"
+}
+```
+
 ## EDIT (PUT) User
 
 URL: /api/users/:id
 
 Nothing required, can change as few or as many things as wanted.
 
-Example: Changing user 6's `username` from Alex to Alexandru, and `email` from alex@yahho.com to newEmail@yahoo.com
+Example: Changing user 's `username` from Alex to Alexandru, and `email` from alex@yahho.com to newEmail@yahoo.com
 
 ```
 {
-	"name": "Alexadru",
-	"email": "newEmail@yahoo.com
+    "name": "Alexadru",
+    "email": "newEmail@yahoo.com
 }
 ```
 
@@ -190,7 +199,6 @@ If unsuccessful, response should be 500 and a message:
     "error": "error trying to update user"
 }
 ```
-
 
 ## DELETE User
 
@@ -225,39 +233,35 @@ Example Data for /api/users/items:
 
 ```
 {
-    "items": [
+    "users": [
         {
             "id": 1,
-            "name": "Stone fruit",
-            "amount": 12,
-            "unit": "lbs",
-            "image": "https://i.imgur.com/SCAVfIV.jpg",
-            "categoryID": 2
+            "name": "Mihai",
+            "email": "mihsi@yahoo.com",
+            "password": "123",
+            "role": "manager"
         },
         {
             "id": 2,
-            "name": "carrots",
-            "amount": 15,
-            "unit": "lbs",
-            "image": "https://i.imgur.com/NdX1vFQ.jpg",
-            "categoryID": 1
+            "name": "Alexandru",
+            "email": "newEmai@yahoo.com",
+            "password": "123",
+            "role": "volunteer"
         },
         {
             "id": 3,
-            "name": "cereal",
-            "amount": 3,
-            "unit": "gal",
-            "image": "https://i.imgur.com/dGWUJEj.jpg",
-            "categoryID": 4
-        },
-        {
+            "name": "Maria",
+            "email": "maria@yahoo.com",
+            "password": "123",
+            "role": "manager"
+        }
     ],
-    "decodedToken": {
-        "subject": 4,
+    "decoded": {
+        "subject": 2,
         "role": "manager",
-        "email": "cata@yahoo.com",
-        "iat": 1555256198,
-        "exp": 1555328198
+        "email": "mihai@yahoo.com",
+        "iat": 1555318714,
+        "exp": 1555390714
     }
 }
 ```
@@ -301,8 +305,8 @@ The API does not _require_ every section to be provided. Require fields: name an
 
 ```
 {
-	"name":"Magic",
-	"amount":"12 lbs"
+    "name":"Magic",
+    "amount":"12 lbs"
 }
 ```
 
@@ -328,12 +332,12 @@ This route is restricted - a authorization header with the token its required
 The API does not _require_ every section to be provided. Front End architects may choose what is required on their descretion. Here is what a an edit with only the name changed will look like for user 2. Name, amount and category is being changed:
 
 ```
-   {
-        "name": "pattato",
-        "amount": 25,
-        "unit": "lbs",
-        "categoryID": 3
-    }
+{
+    "name": "pattato",
+    "amount": 25,
+    "unit": "lbs",
+    "categoryID": 3
+}
 ```
 
 If succesfully the messege will be returned:

@@ -44,7 +44,7 @@ router.post("/api/users/register", (req, res) => {
       });
   } else {
     res.status(401).json({
-      message: "please provide name, password and email for the user"
+      message: "please provide name, password , email and role for the user"
     });
   }
 });
