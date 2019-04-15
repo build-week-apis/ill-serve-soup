@@ -5,6 +5,7 @@ const cors = require("cors");
 //routes import - nothing for now
 const userRoutes = require("../routes/user-routes");
 const itemRoutes = require("../routes/item-routes");
+const categoryRoutes = require("../routes/category-routes");
 
 const server = express();
 
@@ -15,5 +16,6 @@ server.use(express.json());
 //server.use(routes)
 server.use(userRoutes);
 server.use(itemRoutes);
+server.use(categoryRoutes);
 
 module.exports = server;
