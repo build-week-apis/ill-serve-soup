@@ -545,3 +545,25 @@ If unsuccessful, response should be 500 and a message:
     error: "error trying to edit category"
 }
 ```
+
+## DELETE User
+
+URL: /api/categories/:id
+
+Nothing required, can change as few or as many things as wanted.
+
+A successful delete will return a object with a message, for example deleting a category succesfully will return:
+
+```
+{
+    "message": "Category succesfully deleted"
+}
+```
+
+If Category with specified ID does't exist in database will response with 404 and a message:
+
+```
+{
+    "message": "Category id not found"
+}
+```

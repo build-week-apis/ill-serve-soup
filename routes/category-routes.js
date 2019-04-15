@@ -84,4 +84,22 @@ router.put("/api/categories/:id", async (req, res) => {
   }
 });
 
+/**
+ * Deleting a category
+ */
+router.delete("/api/categories/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await catHelpers.deleteCategory(id);
+    if (result) {
+      res.status(200).json({ message: `Category succesfully deleted` });
+    } else {
+      res.status(404).json({ message: "Category id not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "error trying to delete the category" });
+  }
+});
+
 module.exports = router;
