@@ -6,6 +6,7 @@ const cors = require("cors");
 const userRoutes = require("../routes/user-routes");
 const itemRoutes = require("../routes/item-routes");
 const categoryRoutes = require("../routes/category-routes");
+const kitchenRoutes = require("../routes/kitchen-routes");
 
 const server = express();
 
@@ -17,5 +18,6 @@ server.use(express.json());
 server.use(userRoutes);
 server.use(itemRoutes);
 server.use(categoryRoutes);
+server.use(kitchenRoutes);
 
 module.exports = server;
