@@ -46,4 +46,35 @@ describe("User endpoints testing", () => {
       role: "manager"
     });
   });
+
+  it("shoud update a user", async () => {
+    await dbHelpers.registerUser({
+      name: "Toby",
+      password: 123,
+      email: "toby@yahoo.com",
+      role: "manager"
+    });
+    const result = await dbHelpers.updateUser(1, { name: "Teresa" });
+    expect(result).toBe(1);
+  });
+
+  it("shoud delete a user", async () => {
+    await dbHelpers.registerUser({
+      name: "Toby",
+      password: 123,
+      email: "toby@yahoo.com",
+      role: "manager"
+    });
+    await dbHelpers.registerUser({
+      name: "Maria",
+      password: 123,
+      email: "maria@yahoo.com",
+      role: "manager"
+    });
+    const users = await db("users");
+    expect(users).toHaveLength(2);
+
+    const result = await dbHelpers.deleteUser(1);
+    expect(result).toBe(1);
+  });
 });
