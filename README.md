@@ -709,3 +709,25 @@ If unsuccessful, response should be 500 and a message:
     "error trying to edit the kitchen"
 }
 ```
+
+## DELETE Kitcken by ID
+
+URL: /api/categories/:id
+
+Nothing required, can change as few or as many things as wanted.
+
+A successful delete will return a object with a message, for example deleting a kitchen succesfully will return:
+
+```
+{
+    "message": "Kitchen succesfully deleted"
+}
+```
+
+If Category with specified ID does't exist in database will response with 404 and a message:
+
+```
+{
+    "message": "Kitchen not found"
+}
+```
