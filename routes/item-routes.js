@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const restricted = require("../middleware/tokenRestricted");
+const checkAmount = require("../middleware/checkAmount");
 const itemHelpers = require("../database/dbHelpers/itemHelpers");
 
 /**
  *  Endpoint for getting all items from database
  */
 
-router.get("/api/items", restricted, async (req, res) => {
+router.get("/api/items", checkAmount, restricted, async (req, res, next) => {
   try {
     const items = await itemHelpers.getAllItems();
     if (items.image === "") {
@@ -55,7 +56,7 @@ router.get("/api/items/:id", restricted, async (req, res) => {
  */
 router.post("/api/items", restricted, async (req, res) => {
   const { name, amount } = req.body;
-  if (name && amount) {
+  if (name) {
     try {
       const item = await itemHelpers.addItem(req.body);
       res.status(201).json(item);
