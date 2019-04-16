@@ -26,6 +26,7 @@
     "server": "nodemon",
     "start": "node index.js",
     "test": "cross-env DB_ENV=testing jest --watchAll --verbose",
+    "migrate_test": "cross-env NODE_ENV=testing knex migrate:latest",
     "reload": "knex migrate:rollback && knex migrate:latest && knex seed:run && yarn develop",
     "initdb": "knex init",
     "tableUsers": "knex migrate:make usersTable",
