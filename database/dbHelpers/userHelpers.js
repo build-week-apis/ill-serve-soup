@@ -1,4 +1,18 @@
 const db = require("../dbConfig");
+const yup = require("yup");
+
+let userSchema = yup.object().shape({
+  name: yup.string().required(),
+  password: yup
+    .number()
+    .required()
+    .integer(),
+  email: yup.string().email(),
+  role: yup.string().required(),
+  createdOn: yup.date().default(function() {
+    return new Date();
+  })
+});
 
 function getAllUsers() {
   return db("users");
@@ -52,6 +66,19 @@ async function deleteUser(id) {
 
   return result;
 }
+
+// check validity
+// userSchema
+//   .isValid({
+//     name: "jimmy",
+//     password: 24,
+//     email: "t@t.com",
+//     role: "print"
+//   })
+//   .then(function(valid) {
+//     valid; // => true
+//     console.log(valid);
+//   });
 
 module.exports = {
   getAllUsers,

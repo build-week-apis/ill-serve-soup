@@ -78,6 +78,7 @@ async function deleteCategory(id) {
 
   return result;
 }
+
 module.exports = {
   getAllCategories,
   getCategoriesById,
