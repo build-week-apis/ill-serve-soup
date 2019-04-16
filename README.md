@@ -101,40 +101,38 @@ The respone will include the decoded tokend contains the id,email and role of th
 If Successful, response should be 200 (OK). If unsuccessful, response should be 500. Example users data:
 
 ```
-
 {
-"users": [
-{
-"id": 1,
-"name": "Mihai",
-"email": "mihsi@yahoo.com",
-"password": "123",
-"role": "manager"
-},
-{
-"id": 2,
-"name": "Ion",
-"email": "ion@yahoo.com",
-"password": "123",
-"role": "volunteer"
-},
-{
-"id": 3,
-"name": "Maria",
-"email": "maria@yahoo.com",
-"password": "123",
-"role": "manager"
-},
-],
-"decoded": {
-"subject": 7,
-"role": "manager",
-"email": "cata@yahoo.com",
-"iat": 1555192150,
-"exp": 1555264150
+    "users": [
+        {
+            "id": 1,
+            "name": "Mihai",
+            "email": "mihsi@yahoo.com",
+            "password": "123",
+            "role": "manager"
+        },
+        {
+            "id": 2,
+            "name": "Ion",
+            "email": "ion@yahoo.com",
+            "password": "123",
+            "role": "volunteer"
+        },
+        {
+            "id": 3,
+            "name": "Maria",
+            "email": "maria@yahoo.com",
+            "password": "123",
+            "role": "manager"
+        },
+    ],
+    "decoded": {
+        "subject": 7,
+        "role": "manager",
+        "email": "cata@yahoo.com",
+        "iat": 1555192150,
+        "exp": 1555264150
+    }
 }
-}
-
 ```
 
 In case the token is not present in the header it will respond with:
@@ -158,14 +156,12 @@ This route is restricted - a authorization header with the token its required
 If Successful, response should be 200 (OK), should get a response of:
 
 ```
-
 {
-"id": 4,
-"name": "Mia",
-"email": "mia@yahoo.com",
-"role": "admin"
+    "id": 4,
+    "name": "Mia",
+    "email": "mia@yahoo.com",
+    "role": "admin"
 }
-
 ```
 
 If id does't exist in database will response with 404 and a message:
@@ -173,7 +169,7 @@ If id does't exist in database will response with 404 and a message:
 ```
 
 {
-"message": "Id not found"
+    "message": "Id not found"
 }
 
 ```
@@ -185,7 +181,7 @@ In case the token is not present in the header it will respond with:
 ```
 
 {
-"message": "Invalid Credentials"
+    "message": "Invalid Credentials"
 }
 
 ```
@@ -199,31 +195,26 @@ Nothing required, can change as few or as many things as wanted.
 Example: Changing user 's `username` from Alex to Alexandru, and `email` from alex@yahho.com to newEmail@yahoo.com
 
 ```
-
 {
-"name": "Alexadru",
-"email": "newEmail@yahoo.com
+    "name": "Alexadru",
+    "email": "newEmail@yahoo.com
 }
-
 ```
 
 A successful post will return the updated user ID and a message. For example, the above edit will return:
 
 ```
-
 {
-"updateID": "2",
-"message": "User: Alexandru Update succesfully"
+    "updateID": "2",
+    "message": "User: Alexandru Update succesfully"
 }
-
 ```
 
 If user with specified ID does't exist in database will response with 404 and a message:
 
 ```
-
 {
-"message": "User not found"
+    "message": "User not found"
 }
 
 ```
@@ -231,11 +222,9 @@ If user with specified ID does't exist in database will response with 404 and a 
 If unsuccessful, response should be 500 and a message:
 
 ```
-
 {
-"error": "error trying to update user"
+    "error": "error trying to update user"
 }
-
 ```
 
 ## DELETE User
@@ -247,21 +236,17 @@ Nothing required, can change as few or as many things as wanted.
 A successful delete will return a object with a message, for example deleting a user succesfully will return:
 
 ```
-
 {
-"message": "Delete Succesfully"
+    "message": "Delete Succesfully"
 }
-
 ```
 
 If user with specified ID does't exist in database will response with 404 and a message:
 
 ```
-
 {
-"message": "User not found"
+    "message": "User not found"
 }
-
 ```
 
 ## GET all Items/Inventory from database
@@ -276,38 +261,49 @@ Example Data for /api/items:
 ```
 
 {
-"users": [
-{
-"id": 1,
-"name": "Mihai",
-"email": "mihsi@yahoo.com",
-"password": "123",
-"role": "manager"
-},
-{
-"id": 2,
-"name": "Alexandru",
-"email": "newEmai@yahoo.com",
-"password": "123",
-"role": "volunteer"
-},
-{
-"id": 3,
-"name": "Maria",
-"email": "maria@yahoo.com",
-"password": "123",
-"role": "manager"
+    "items": [
+        {
+            "id": 1,
+            "name": "Stone fruit",
+            "amount": 12,
+            "unit": "lbs",
+            "price": 6.3,
+            "supplier_name": "Est products",
+            "supplier_contact": "est@yahoo.com",
+            "image": "https://i.imgur.com/SCAVfIV.jpg",
+            "categoryID": 2
+        },
+        {
+            "id": 2,
+            "name": "carrots",
+            "amount": 15,
+            "unit": "lbs",
+            "price": 2.3,
+            "supplier_name": "Nord products",
+            "supplier_contact": "nord@yahoo.com",
+            "image": "https://i.imgur.com/NdX1vFQ.jpg",
+            "categoryID": 1
+        },
+        {
+            "id": 3,
+            "name": "cereal",
+            "amount": 3,
+            "unit": "gal",
+            "price": 13.2,
+            "supplier_name": "First products",
+            "supplier_contact": "first@yahoo.com",
+            "image": "https://i.imgur.com/dGWUJEj.jpg",
+            "categoryID": 4
+        }
+    ],
+    "decodedToken": {
+        "subject": 4,
+        "role": "manager",
+        "email": "test@yahoo.com",
+        "iat": 1555417996,
+        "exp": 1555489996
+    }
 }
-],
-"decoded": {
-"subject": 2,
-"role": "manager",
-"email": "mihai@yahoo.com",
-"iat": 1555318714,
-"exp": 1555390714
-}
-}
-
 ```
 
 ## GET Items by Id from database
@@ -320,25 +316,26 @@ This route is restricted - a authorization header with the token its required
 Example Data for /api/users/items/2:
 
 ```
-
 {
-"item": {
-"id": 2,
-"name": "carrots",
-"amount": 15,
-"unit": "lbs",
-"image": "https://i.imgur.com/NdX1vFQ.jpg",
-"categoryID": 1
-},
-"decodedToken": {
-"subject": 4,
-"role": "manager",
-"email": "cata@yahoo.com",
-"iat": 1555256198,
-"exp": 1555328198
+    "item": {
+        "id": 2,
+        "name": "carrots",
+        "amount": 15,
+        "unit": "lbs",
+        "price": 2.3,
+        "supplier_name": "Nord products",
+        "supplier_contact": "nord@yahoo.com",
+        "image": "https://i.imgur.com/NdX1vFQ.jpg",
+        "categoryID": 1
+    },
+    "decodedToken": {
+        "subject": 4,
+        "role": "manager",
+        "email": "test@yahoo.com",
+        "iat": 1555417996,
+        "exp": 1555489996
+    }
 }
-}
-
 ```
 
 ## POST Items
@@ -352,8 +349,8 @@ The API does not _require_ every section to be provided. Require fields: name an
 ```
 
 {
-"name":"Magic",
-"amount":"12 lbs"
+    "name":"Magic",
+    "amount":"12 lbs"
 }
 
 ```
@@ -361,16 +358,17 @@ The API does not _require_ every section to be provided. Require fields: name an
 A successfully created item will return a object with the posted item:
 
 ```
-
 {
-"id": 13,
-"name": "Magic",
-"amount": "12 lbs",
-"unit": null,
-"image": null,
-"categoryID": null
+    "id": 8,
+    "name": "Magidc",
+    "amount": "12 ldbs",
+    "unit": "kg",
+    "price": null,
+    "supplier_name": null,
+    "supplier_contact": null,
+    "image": "slsls",
+    "categoryID": 2
 }
-
 ```
 
 ## EDIT (PUT) Items
@@ -384,10 +382,10 @@ The API does not _require_ every section to be provided. Front End architects ma
 ```
 
 {
-"name": "pattato",
-"amount": 25,
-"unit": "lbs",
-"categoryID": 3
+    "name": "pattato",
+    "amount": 25,
+    "unit": "lbs",
+    "categoryID": 3
 }
 
 ```
@@ -397,7 +395,7 @@ If succesfully the messege will be returned:
 ```
 
 {
-"message": "Item pattato was succesfully edited"
+    "message": "Item pattato was succesfully edited"
 }
 
 ```
@@ -411,7 +409,7 @@ A successful delete will return a message:
 ```
 
 {
-"message": "Item succesfully deleted"
+    "message": "Item succesfully deleted"
 }
 
 ```
