@@ -641,3 +641,71 @@ If Kitchen with specified ID does't exist in database will response with 404 and
     "message": "Id not found"
 }
 ```
+
+## POST a Kitchen Soup to database
+
+URL: /api/kitchens
+
+Nothing required, anybody can access this endpoint
+
+The API _require_ require fields: name , location and mission
+
+```
+{
+	"name":"Best Soup Kitchden",
+	"location":"445 Mount Edden Road, Mount Eden, Auckland",
+	"mission":" Mission Possdible is about the best practices that have changed peoples’ lives for the better through a soup kitchen. Here’s the model. Make a difference!"
+}
+```
+
+A successfully created item will return a object with the posted item:
+
+```
+{
+    "id": 5,
+    "name": "Best Soup Kitchden",
+    "location": "445 Mount Edden Road, Mount Eden, Auckland",
+    "mission": " Mission Possdible is about the best practices that have changed peoples’ lives for the better through a soup kitchen. Here’s the model. Make a difference!",
+    "average_visitors": null,
+    "website": null
+}
+```
+
+## EDIT (PUT) Kitchens
+
+URL: /api/kitchens/:id
+
+Nothing required, can change as few or as many things as wanted.
+
+Example: Changing category 's `name` and `mission` from fish to bird
+
+```
+{
+	"name":"new name",
+	"mission":"new mission"
+}
+```
+
+A successful post will return the updated kitchen name with a message. For example, the above edit will return:
+
+```
+{
+    "message": "new name was succesfully edited"
+}
+```
+
+If kitchen with specified ID does't exist in database will response with 404 and a message:
+
+```
+{
+    message: "Kitchen not found"
+}
+```
+
+If unsuccessful, response should be 500 and a message:
+
+```
+{
+    "error trying to edit the kitchen"
+}
+```

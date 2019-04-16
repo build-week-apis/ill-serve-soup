@@ -16,7 +16,7 @@ async function getKitchenById(id) {
 
 async function addKitchen(kitchen) {
   const [ids] = await db("kitchens").insert(kitchen);
-  const item = getItemById(ids);
+  const item = getKitchenById(ids);
 
   return item;
 }
