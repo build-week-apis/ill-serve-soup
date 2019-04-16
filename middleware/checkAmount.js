@@ -40,6 +40,7 @@ module.exports = async (req, res, next) => {
         html: "<strong>and easy to do anywhere, even with Node.js</strong>"
       };
       sgMail.send(msg);
+      //console.log(sgMail.send(msg));
     }
   });
 };
