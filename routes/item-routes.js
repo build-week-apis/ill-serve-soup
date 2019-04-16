@@ -3,6 +3,8 @@ const router = express.Router();
 const restricted = require("../middleware/tokenRestricted");
 const checkAmount = require("../middleware/checkAmount");
 const itemHelpers = require("../database/dbHelpers/itemHelpers");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 /**
  *  Endpoint for getting all items from database
@@ -24,6 +26,46 @@ router.get("/api/items", checkAmount, restricted, async (req, res, next) => {
     });
   }
 });
+
+/**
+ *  [POST] endpoint for sending a email
+ *
+ * * Exemple of payload
+ * {
+ *  sender: {string}
+ *  reciver: {string}
+ *  subject: {string}
+ *  text: {string}
+ * }
+ */
+// router.post("/api/items/email", restricted, async (req, res) => {
+//   const body = req.body;
+//   try {
+//     const items = await itemHelpers.getAllItems();
+//     items.map(item => {
+//       if (item.amount === 0) {
+//         // console.log(
+//         //   `${item.name} with amount: ${
+//         //     item.amount
+//         //   } a order must be put from ${currentUserEmail} to supplier email: ${
+//         //     item.supplier_contact
+//         //   }`
+//         // );
+//         const msg = {
+//           to: body.sender,
+//           from: body.reciver,
+//           subject: body.subject,
+//           text: body.text,
+//           html: "<strong>and easy to do anywhere, even with Node.js</strong>"
+//         };
+//         sgMail.send(msg);
+//         res.status(200).json({ message: "Email Successfully recived" });
+//       }
+//     });
+//   } catch (error) {
+//     res.status(500).json({ error: "unable to send the email" });
+//   }
+// });
 
 /**
  * Endpoint for getting a item by Id
