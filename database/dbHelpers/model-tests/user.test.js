@@ -1,11 +1,8 @@
 const dbHelpers = require("../userHelpers");
 const db = require("../../dbConfig");
 
-describe("User endpoints testing", () => {
+describe("User helper function testing", () => {
   beforeEach(async () => {
-    await db("users").truncate();
-  });
-  afterEach(async () => {
     await db("users").truncate();
   });
 
