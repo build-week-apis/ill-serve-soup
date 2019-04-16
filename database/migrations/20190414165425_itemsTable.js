@@ -7,6 +7,9 @@ exports.up = function(knex, Promise) {
       .unique();
     table.integer("amount").notNullable();
     table.string("unit");
+    table.float("price");
+    table.string("supplier_name", 128);
+    table.string("supplier_contact", 128);
     table.string("image");
     table
       .integer("categoryID")
