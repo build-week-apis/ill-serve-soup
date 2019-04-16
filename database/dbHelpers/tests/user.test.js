@@ -29,4 +29,21 @@ describe("User endpoints testing", () => {
     const users = await db("users");
     expect(users).toHaveLength(2);
   });
+
+  it("shoud get a user by id", async () => {
+    await dbHelpers.registerUser({
+      name: "Toby",
+      password: 123,
+      email: "toby@yahoo.com",
+      role: "manager"
+    });
+    const user = await dbHelpers.getUserById(1);
+    expect(user).toBeDefined();
+    expect(user).toEqual({
+      email: "toby@yahoo.com",
+      id: 1,
+      name: "Toby",
+      role: "manager"
+    });
+  });
 });
