@@ -10,6 +10,9 @@ exports.seed = function(knex, Promise) {
           name: "Stone fruit",
           amount: 12,
           unit: "lbs",
+          price: 6.3,
+          supplier_name: "Est products",
+          supplier_contact: "est@yahoo.com",
           image: "https://i.imgur.com/SCAVfIV.jpg",
           categoryID: 2
         },
@@ -18,6 +21,9 @@ exports.seed = function(knex, Promise) {
           name: "carrots",
           amount: 15,
           unit: "lbs",
+          price: 2.3,
+          supplier_name: "Nord products",
+          supplier_contact: "nord@yahoo.com",
           image: "https://i.imgur.com/NdX1vFQ.jpg",
           categoryID: 1
         },
@@ -26,6 +32,9 @@ exports.seed = function(knex, Promise) {
           name: "cereal",
           amount: 3,
           unit: "gal",
+          price: 13.2,
+          supplier_name: "First products",
+          supplier_contact: "first@yahoo.com",
           image: "https://i.imgur.com/dGWUJEj.jpg",
           categoryID: 4
         },
@@ -34,6 +43,9 @@ exports.seed = function(knex, Promise) {
           name: "cheese",
           amount: 5,
           unit: "lbs",
+          price: 3.3,
+          supplier_name: "West products",
+          supplier_contact: "west@yahoo.com",
           image: "https://i.imgur.com/Tl318Os.jpg",
           categoryID: 4
         },
@@ -42,6 +54,9 @@ exports.seed = function(knex, Promise) {
           name: "bread",
           amount: 3,
           unit: "lbs",
+          price: 20.3,
+          supplier_name: "Premium products",
+          supplier_contact: "premium@yahoo.com",
           image: "https://i.imgur.com/mUyhf6x.jpg",
           categoryID: 9
         },
@@ -50,6 +65,9 @@ exports.seed = function(knex, Promise) {
           name: "bacon",
           amount: 3,
           unit: "lbs",
+          price: 7.3,
+          supplier_name: "Banana products",
+          supplier_contact: "banana@yahoo.com",
           image: "https://i.imgur.com/wIoynYP.jpg",
           categoryID: 7
         },
@@ -58,6 +76,9 @@ exports.seed = function(knex, Promise) {
           name: "Chunky",
           amount: 5,
           unit: "lbs",
+          price: 23.3,
+          supplier_name: "State products",
+          supplier_contact: "state@yahoo.com",
           image: "https://i.imgur.com/sIshItO.jpg",
           categoryID: 8
         }
