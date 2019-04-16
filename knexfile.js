@@ -17,7 +17,7 @@ module.exports = {
   testing: {
     client: "sqlite3",
     connection: {
-      filename: "./database/soup-kitchen-db.sqlite3"
+      filename: "./database/test_kitchenDb.sqlite3"
     },
     useNullAsDefault: true,
     migrations: {
