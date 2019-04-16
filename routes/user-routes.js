@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const restricted = require("../middleware/tokenRestricted");
+const emailCheck = require("../middleware/emailCheck");
 //const checkRole = require("../middleware/roleCheck");  for later
 
 const userHelpers = require("../database/dbHelpers/userHelpers.js");
@@ -21,7 +22,7 @@ const userHelpers = require("../database/dbHelpers/userHelpers.js");
  * }
  *
  */
-router.post("/api/users/register", (req, res) => {
+router.post("/api/users/register", emailCheck, (req, res) => {
   const creds = req.body;
   const hash = bcrypt.hashSync(creds.password, 12);
   creds.password = hash;
