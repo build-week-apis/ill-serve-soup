@@ -6,7 +6,7 @@ async function getAllSoupKitchen() {
   return allKitchens;
 }
 
-async function getKitchenById(ids) {
+async function getKitchenById(id) {
   const kitchen = await db("kitchens")
     .where({ id })
     .first();

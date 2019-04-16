@@ -612,3 +612,32 @@ If unsuccessful, response should be 500 and a message:
     error: "error trying to get all kitchens from database"
 }
 ```
+
+## GET Kitchen Soup by Id from database
+
+URL: /api/kitchens/:id
+
+Nothing required, anybody can access this endpoint
+
+Example Data for /api/kitchens/:id
+
+```
+{
+    "kitchen": {
+        "id": 2,
+        "name": "The Soup Compasion",
+        "location": "Via Garibaldi 123, 00100 Roma\t",
+        "mission": "All of the Compassion Soup Kitchen’s mahi is guided by our vision, mission and values. We strive to ensure our service best fits the needs of people in our community, and honour our mission. We evaluate new and existing services against our vision and mission, and use our values to carry out this work",
+        "average_visitors": 6.4,
+        "website": "www.thesoupcompasion.com"
+    }
+}
+```
+
+If Kitchen with specified ID does't exist in database will response with 404 and a message:
+
+```
+{
+    "message": "Id not found"
+}
+```
