@@ -1,6 +1,10 @@
-## I'll Serve Soup Server
+# <p align="center" style="color: green" size="40"> I'll Serve Soup Backend</p>
 
-### About
+<p align="center">
+  <img src="soup.png" width="190" alt="I'll serve soup">
+</p>
+
+# About
 
 This is the back-end for the I'll serve soup, which is part of Lambda School Build Week Project.
 
