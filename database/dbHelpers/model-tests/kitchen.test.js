@@ -41,4 +41,13 @@ describe("User helper function testing", () => {
     expect(kitchen).toBeDefined();
     expect(kitchen).toHaveProperty("name", "The Soup Compasion");
   });
+
+  it("should update a kitchen soup succesfully", async () => {
+    const result = await dbHelpers.editKitchen(2, { name: "Test name" });
+    expect(result).toBe(1);
+
+    const kitchen = await dbHelpers.getKitchenById(2);
+    expect(kitchen).toHaveProperty("name", "Test name");
+  });
+
 });
