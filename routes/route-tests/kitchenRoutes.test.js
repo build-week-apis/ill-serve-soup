@@ -74,5 +74,10 @@ describe("Request: /api/kitchens TESTS", () => {
     expect(kitchenDb).toHaveLength(3);
   });
 
-  it("shoud update a category succesfully", async () => {});
+  it("shoud update a kitchen succesfully", async () => {
+    const result = await request(server)
+      .put("/api/kitchens/2")
+      .send({ location: "test location" });
+    expect(result.status).toBe(200);
+  });
 });
