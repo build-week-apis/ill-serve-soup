@@ -15,7 +15,9 @@ async function getItemById(id) {
 }
 
 async function addItem(itm) {
-  const [ids] = await db("items").insert(itm);
+  const [ids] = await db("items")
+    .insert(itm)
+    .returning("id");
   const item = getItemById(ids);
 
   return item;
@@ -24,7 +26,8 @@ async function addItem(itm) {
 async function updateItem(id, item) {
   const result = await db("items")
     .where({ id })
-    .update(item);
+    .update(item)
+    .returning("id");
 
   return result;
 }
