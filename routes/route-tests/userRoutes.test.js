@@ -75,7 +75,7 @@ describe("Endpoint: /api/users/register && login TESTS", () => {
     expect(res.status).toBe(400);
   });
 
-  it("shoud return 500 id body is not correct", async () => {
+  it("shoud return 401 id body is not correct", async () => {
     const newUser1 = {
       na: "Pop",
       password: "123",
@@ -86,5 +86,18 @@ describe("Endpoint: /api/users/register && login TESTS", () => {
       .post("/api/users/register")
       .send(newUser1);
     expect(res.status).toBe(401);
+  });
+
+  it("shoud return 500 if the user is not unique ", async () => {
+    const user2 = {
+      name: "Babacu",
+      password: 123,
+      email: "babacu@yahoo.com",
+      role: "manager"
+    };
+    const res = await request(server)
+      .post("/api/users/register")
+      .send(user2);
+    expect(res.status).toBe(500);
   });
 });
