@@ -3,6 +3,8 @@ const db = require("../../dbConfig");
 
 describe("User helper function testing", () => {
   beforeAll(async () => {
+    await db("users").truncate();
+
     await dbHelpers.registerUser({
       name: "Toby",
       password: 123,
