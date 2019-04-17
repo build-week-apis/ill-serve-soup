@@ -68,8 +68,7 @@ async function addCategory(category) {
 async function updateCategory(id, category) {
   const result = await db("categories")
     .where({ id })
-    .update(category)
-    .returning("id");
+    .update(category);
 
   return result;
 }
