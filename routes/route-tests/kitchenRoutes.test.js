@@ -52,4 +52,9 @@ describe("Request: /api/kitchens TESTS", () => {
     const result = await request(server).get("/api/kitchens/1");
     expect(typeof result.body).toBe("object");
   });
+
+  it("shoud return 404 if id is not fund", async () => {
+    const result = await request(server).get("/api/kitchens/122");
+    expect(result.status).toBe(404);
+  });
 });
