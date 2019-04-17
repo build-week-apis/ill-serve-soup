@@ -26,4 +26,12 @@ describe("Unit tests for Categoris helpers", () => {
     const cat = await db("categories");
     expect(cat).toHaveLength(4);
   });
+
+  it("should update a category succesfully", async () => {
+    const result = await dbHelpers.updateCategory(2, { name: "maraciuca" });
+    expect(result).toBe(1);
+
+    const kitchen = await dbHelpers.getCategoriesById(2);
+    expect(kitchen).toHaveProperty("name", "maraciuca");
+  });
 });
