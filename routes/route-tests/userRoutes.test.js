@@ -75,5 +75,16 @@ describe("Endpoint: /api/users/register && login TESTS", () => {
     expect(res.status).toBe(400);
   });
 
-  it("shoud return 500 id body is not correct", );
+  it("shoud return 500 id body is not correct", async () => {
+    const newUser1 = {
+      na: "Pop",
+      password: "123",
+      email: "pop@yahoo.com",
+      role: "manager"
+    };
+    const res = await request(server)
+      .post("/api/users/register")
+      .send(newUser1);
+    expect(res.status).toBe(401);
+  });
 });
