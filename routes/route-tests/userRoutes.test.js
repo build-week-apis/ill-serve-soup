@@ -47,5 +47,17 @@ describe("Endpoint: /api/users/register && login TESTS", () => {
     expect(res.body).toHaveProperty("message");
   });
 
-
+  it("Request: GET /api/users/login", async () => {
+    const user = {
+      name: "Bean",
+      password: "123"
+    };
+    const res = await request(server)
+      .post("/api/users/login")
+      .send(user);
+    expect(res.body).toBeDefined();
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("token");
+    expect(res.body).toHaveProperty("role", "manager");
+  });
 });
