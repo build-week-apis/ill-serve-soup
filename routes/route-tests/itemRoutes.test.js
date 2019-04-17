@@ -39,4 +39,25 @@ describe("Request: /api/items TESTS", () => {
   it("should set testing enviroment", () => {
     expect(process.env.DB_ENV).toBe("testing");
   });
+
+  it("Request: GET /api/items", async () => {
+    const newItem = {
+      name: "Testtt fruit",
+      amount: 121,
+      unit: "kg",
+      price: 6.32,
+      supplier_name: "Est products",
+      supplier_contact: "est@yahoo.com",
+      image: "https://i.imgur.com/SCAVfIV.jpg",
+      categoryID: 2
+    };
+
+    const result = await request(server)
+      .get("/api/items")
+      .set({ Authorization: "223" })
+      .send(newItem)
+      .expect(401);
+
+    expect(result.body).toBeDefined();
+  });
 });
