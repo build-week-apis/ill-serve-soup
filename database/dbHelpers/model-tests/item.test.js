@@ -36,4 +36,21 @@ describe("User items function testing", () => {
     const users = await db("items");
     expect(users).toHaveLength(2);
   });
+
+  it("should get a item by id", async () => {
+    await dbHelpers.addItem({
+      id: 1,
+      name: "Stone fruit",
+      amount: 12,
+      unit: "lbs",
+      price: 6.3,
+      supplier_name: "Est products",
+      supplier_contact: "est@yahoo.com",
+      image: "https://i.imgur.com/SCAVfIV.jpg",
+      categoryID: 2
+    });
+    const item = await dbHelpers.getItemById(1);
+    expect(item).toBeDefined();
+    expect(item).toHaveProperty("name", "Stone fruit");
+  });
 });
