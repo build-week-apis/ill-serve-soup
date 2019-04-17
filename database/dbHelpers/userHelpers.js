@@ -19,7 +19,7 @@ function getAllUsers() {
 }
 
 async function registerUser(creds) {
-  const [id] = await db("users").insert(creds);
+  const [id] = await db("users").insert(creds).returning("id");
 
   const query = await db("users")
     .where({ id })
@@ -56,7 +56,7 @@ function getUserById(id) {
 function updateUser(id, user) {
   return db("users")
     .where({ id })
-    .update(user);
+    .update(user).returning("id");
 }
 
 async function deleteUser(id) {

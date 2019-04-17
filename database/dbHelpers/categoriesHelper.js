@@ -57,7 +57,9 @@ async function getCategoriesById(id) {
 }
 
 async function addCategory(category) {
-  const [id] = await db("categories").insert(category);
+  const [id] = await db("categories")
+    .insert(category)
+    .returning("id");
   const newCategory = getCategoriesById(id);
 
   return newCategory;
@@ -66,7 +68,8 @@ async function addCategory(category) {
 async function updateCategory(id, category) {
   const result = await db("categories")
     .where({ id })
-    .update(category);
+    .update(category)
+    .returning("id");
 
   return result;
 }
