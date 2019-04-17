@@ -2,15 +2,7 @@ const dbHelpers = require("../kitchenHelpers");
 const db = require("../../dbConfig");
 
 describe("User helper function testing", () => {
-  beforeEach(async () => {
-    await db("kitchens").truncate();
-  });
-
-  it("should set testing enviroment", () => {
-    expect(process.env.DB_ENV).toBe("testing");
-  });
-
-  it("shoud add a new kitchen", async () => {
+  beforeAll(async () => {
     await dbHelpers.addKitchen({
       id: 1,
       name: "The Soup Kitchen",
@@ -29,7 +21,19 @@ describe("User helper function testing", () => {
       average_visitors: 6.4,
       website: "www.thesoupcompasion.com"
     });
+  });
+
+  afterAll(async () => {
+    await db("kitchens").truncate();
+  });
+
+  it("should set testing enviroment", () => {
+    expect(process.env.DB_ENV).toBe("testing");
+  });
+
+  it("shoud add a new kitchen", async () => {
     const users = await db("kitchens");
     expect(users).toHaveLength(2);
   });
+
 });
