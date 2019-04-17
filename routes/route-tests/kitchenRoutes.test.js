@@ -57,4 +57,22 @@ describe("Request: /api/kitchens TESTS", () => {
     const result = await request(server).get("/api/kitchens/122");
     expect(result.status).toBe(404);
   });
+
+  it("should return new soup kitchen succesfully", async () => {
+    const newKitchen = await request(server)
+      .post("/api/kitchens")
+      .send({
+        id: 3,
+        name: "Treton Soup Kitchen",
+        location: "Javorová 33/A, 123 45 Bratislava 2\t",
+        mission:
+          "With a strong infrastructure managed by a committed and engaged Board and staff, TASK will expand its ability to reach the hungry in the Trenton area and those with the aspiration or responsibility to serve them.",
+        average_visitors: 8.6,
+        website: "www.tretonkitchen.com"
+      });
+    const kitchenDb = await db("kitchens");
+    expect(kitchenDb).toHaveLength(3);
+  });
+
+  it("shoud update a category succesfully", async () => {});
 });
