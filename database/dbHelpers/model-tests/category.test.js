@@ -34,4 +34,12 @@ describe("Unit tests for Categoris helpers", () => {
     const kitchen = await dbHelpers.getCategoriesById(2);
     expect(kitchen).toHaveProperty("name", "maraciuca");
   });
+
+  it("should delete a category succesfully", async () => {
+    const result = await dbHelpers.deleteCategory(1);
+    expect(result).toBe(1);
+
+    const categoryDB = await db("categories");
+    expect(categoryDB).toHaveLength(3);
+  });
 });
