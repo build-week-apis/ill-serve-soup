@@ -212,6 +212,7 @@ router.put("/api/users/:id", async (req, res) => {
 
   try {
     const result = await userHelpers.updateUser(id, user);
+    console.log(result);
     if (result === 1) {
       res.status(200).json({
         updateID: id,

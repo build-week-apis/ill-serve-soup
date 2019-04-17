@@ -26,8 +26,7 @@ async function addItem(itm) {
 async function updateItem(id, item) {
   const result = await db("items")
     .where({ id })
-    .update(item)
-    .returning("id");
+    .update(item);
 
   return result;
 }
