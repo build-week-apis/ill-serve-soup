@@ -60,4 +60,20 @@ describe("Endpoint: /api/users/register && login TESTS", () => {
     expect(res.body).toHaveProperty("token");
     expect(res.body).toHaveProperty("role", "manager");
   });
+
+  it("sould register with corrent email : status 400", async () => {
+    const newUser = {
+      name: "Bean",
+      password: "123",
+      email: "beanyahoo.com",
+      role: "manager"
+    };
+
+    const res = await request(server)
+      .post("/api/users/register")
+      .send(newUser);
+    expect(res.status).toBe(400);
+  });
+
+  it("shoud return 500 id body is not correct", );
 });
