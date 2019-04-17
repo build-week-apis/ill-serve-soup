@@ -50,4 +50,11 @@ describe("User helper function testing", () => {
     expect(kitchen).toHaveProperty("name", "Test name");
   });
 
+  it("should delete a kitchen succesfully", async () => {
+    const result = await dbHelpers.deleteKitchen(1);
+
+    expect(result).toBe(1);
+    const kitchenDb = await db("kitchens");
+    expect(kitchenDb).toHaveLength(1);
+  });
 });
