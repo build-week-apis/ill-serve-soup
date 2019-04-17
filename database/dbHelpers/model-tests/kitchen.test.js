@@ -36,4 +36,9 @@ describe("User helper function testing", () => {
     expect(users).toHaveLength(2);
   });
 
+  it("should get a kitchen by id", async () => {
+    const kitchen = await dbHelpers.getKitchenById(2);
+    expect(kitchen).toBeDefined();
+    expect(kitchen).toHaveProperty("name", "The Soup Compasion");
+  });
 });
