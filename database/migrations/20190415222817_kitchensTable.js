@@ -2,15 +2,15 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable("kitchens", table => {
     table.increments();
     table
-      .string("name", 128)
+      .string("name", 200)
       .notNullable()
       .unique();
     table
-      .string("location", 300)
+      .string("location", 500)
       .notNullable()
       .unique();
     table
-      .string("mission", 300)
+      .string("mission", 500)
       .notNullable()
       .unique();
     table.float("average_visitors");
