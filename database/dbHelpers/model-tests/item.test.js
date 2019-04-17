@@ -72,4 +72,24 @@ describe("User items function testing", () => {
     const item = await dbHelpers.getItemById(1);
     expect(item).toHaveProperty("name", "Test");
   });
+  it("shoud delete a item from database", async () => {
+    await dbHelpers.addItem({
+      id: 1,
+      name: "Stone fruit",
+      amount: 12,
+      unit: "lbs",
+      price: 6.3,
+      supplier_name: "Est products",
+      supplier_contact: "est@yahoo.com",
+      image: "https://i.imgur.com/SCAVfIV.jpg",
+      categoryID: 2
+    });
+
+    const count = await dbHelpers.deleteItem(1);
+    expect(count).toBe(1);
+    const item = await dbHelpers.getItemById(1);
+    expect(item).toBeUndefined();
+    const itemDb = await db("items");
+    expect(itemDb).toHaveLength(0);
+  });
 });
