@@ -3,15 +3,9 @@ const yup = require("yup");
 
 let userSchema = yup.object().shape({
   name: yup.string().required(),
-  password: yup
-    .number()
-    .required()
-    .integer(),
+  password: yup.string().required(),
   email: yup.string().email(),
-  role: yup.string().required(),
-  createdOn: yup.date().default(function() {
-    return new Date();
-  })
+  role: yup.string().required()
 });
 
 function getAllUsers() {
@@ -87,5 +81,6 @@ module.exports = {
   getUserById,
   findBy,
   updateUser,
-  deleteUser
+  deleteUser,
+  userSchema
 };

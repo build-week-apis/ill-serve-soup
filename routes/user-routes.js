@@ -22,12 +22,14 @@ const userHelpers = require("../database/dbHelpers/userHelpers.js");
  * }
  *
  */
-router.post("/api/users/register", emailCheck, (req, res) => {
+router.post("/api/users/register", emailCheck, async (req, res) => {
   const creds = req.body;
   const hash = bcrypt.hashSync(creds.password, 12);
   creds.password = hash;
 
-  if (creds.name && creds.password && creds.email && creds.role) {
+  const result = await userHelpers.userSchema.isValid(req.body);
+
+  if (result) {
     userHelpers
       .registerUser(creds)
       .then(user => {
@@ -48,6 +50,28 @@ router.post("/api/users/register", emailCheck, (req, res) => {
       message: "please provide name, password , email and role for the user"
     });
   }
+
+  // if (creds.name && creds.password && creds.email && creds.role) {
+  //   userHelpers
+  //     .registerUser(creds)
+  //     .then(user => {
+  //       //const token = generateToken(user);
+  //       res.status(200).json({
+  //         //token,
+  //         id: user.id,
+  //         email: user.email,
+  //         message: `User: ${user.name} was registered succesfully`
+  //       });
+  //     })
+  //     .catch(err => {
+  //       //console.log(err);
+  //       res.status(500).json({ err: "error trying to register user" });
+  //     });
+  // } else {
+  //   res.status(401).json({
+  //     message: "please provide name, password , email and role for the user"
+  //   });
+  // }
 });
 
 /**
