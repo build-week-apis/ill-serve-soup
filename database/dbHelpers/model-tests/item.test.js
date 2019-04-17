@@ -3,6 +3,8 @@ const db = require("../../dbConfig");
 
 describe("User items function testing", () => {
   beforeAll(async () => {
+    await db("items").truncate();
+
     await dbHelpers.addItem({
       id: 1,
       name: "Stone fruit",
