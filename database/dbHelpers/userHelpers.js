@@ -49,10 +49,12 @@ function getUserById(id) {
     .first();
 }
 
-function updateUser(id, user) {
-  return db("users")
+async function updateUser(id, user) {
+  const result = await db("users")
     .where({ id })
     .update(user);
+
+  return result;
 }
 
 async function deleteUser(id) {
