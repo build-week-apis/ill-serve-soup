@@ -2,15 +2,7 @@ const dbHelpers = require("../kitchenHelpers");
 const db = require("../../dbConfig");
 
 describe("User helper function testing", () => {
-  beforeEach(async () => {
-    await db("kitchens").truncate();
-  });
-
-  it("should set testing enviroment", () => {
-    expect(process.env.DB_ENV).toBe("testing");
-  });
-
-  it("shoud add a new kitchen", async () => {
+  beforeAll(async () => {
     await dbHelpers.addKitchen({
       id: 1,
       name: "The Soup Kitchen",
@@ -29,7 +21,40 @@ describe("User helper function testing", () => {
       average_visitors: 6.4,
       website: "www.thesoupcompasion.com"
     });
+  });
+
+  afterAll(async () => {
+    await db("kitchens").truncate();
+  });
+
+  it("should set testing enviroment", () => {
+    expect(process.env.DB_ENV).toBe("testing");
+  });
+
+  it("shoud add a new kitchen", async () => {
     const users = await db("kitchens");
     expect(users).toHaveLength(2);
+  });
+
+  it("should get a kitchen by id", async () => {
+    const kitchen = await dbHelpers.getKitchenById(2);
+    expect(kitchen).toBeDefined();
+    expect(kitchen).toHaveProperty("name", "The Soup Compasion");
+  });
+
+  it("should update a kitchen soup succesfully", async () => {
+    const result = await dbHelpers.editKitchen(2, { name: "Test name" });
+    expect(result).toBe(1);
+
+    const kitchen = await dbHelpers.getKitchenById(2);
+    expect(kitchen).toHaveProperty("name", "Test name");
+  });
+
+  it("should delete a kitchen succesfully", async () => {
+    const result = await dbHelpers.deleteKitchen(1);
+
+    expect(result).toBe(1);
+    const kitchenDb = await db("kitchens");
+    expect(kitchenDb).toHaveLength(1);
   });
 });
