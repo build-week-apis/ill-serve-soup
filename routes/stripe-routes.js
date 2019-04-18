@@ -18,4 +18,18 @@ router.get("/api/payment", (req, res) => {
   });
 });
 
+router.post("/api/payment", (req, res) => {
+  //getting the token id subbmited by the form
+  const token = request.body.stripeToken;
+
+  const body = {
+    amount: 999,
+    currency: "usd",
+    description: "Example charge",
+    source: token,
+    statement_descriptor: "Custom descriptor"
+  };
+  stripe.charges.create(body, stripeChargeCallback(res));
+});
+
 module.exports = router;
