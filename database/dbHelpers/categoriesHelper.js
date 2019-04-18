@@ -1,4 +1,5 @@
 const db = require("../dbConfig");
+const yup = require("yup");
 
 async function getAllCategories() {
   const categories = await db("categories").select("id", "name"); //Im not sure how to get it

@@ -42,7 +42,9 @@ router.get("/api/kitchens/:id", async (req, res) => {
 router.post("/api/kitchens", async (req, res) => {
   const body = req.body;
 
-  if (body.name && body.location) {
+  const valid = await kitchenHelpers.kitchenSchema.isValid(req.body);
+
+  if (valid) {
     try {
       const result = await kitchenHelpers.addKitchen(body);
       res.status(201).json(result);
@@ -53,7 +55,8 @@ router.post("/api/kitchens", async (req, res) => {
     }
   } else {
     res.status(401).json({
-      message: "Please provide name and location for the Kitchen Soup"
+      message:
+        "Please provide name , location , mission and website for the Kitchen Soup"
     });
   }
 });

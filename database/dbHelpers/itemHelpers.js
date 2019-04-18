@@ -45,7 +45,6 @@ let itemSchema = yup.object().shape({
   amount: yup
     .number()
     .required()
-    .positive()
     .integer(),
   unit: yup.string().required()
 });

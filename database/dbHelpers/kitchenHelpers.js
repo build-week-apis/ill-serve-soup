@@ -10,7 +10,7 @@ let kitchenSchema = yup.object().shape({
     .required()
     .positive()
     .integer(),
-  website: yup.string().url()
+  website: yup.string()
 });
 
 async function getAllSoupKitchen() {
