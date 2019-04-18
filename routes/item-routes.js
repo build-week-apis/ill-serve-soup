@@ -97,8 +97,11 @@ router.get("/api/items/:id", restricted, async (req, res) => {
  * Endpoint for Add a item in database
  */
 router.post("/api/items", restricted, async (req, res) => {
-  const { name, amount } = req.body;
-  if (name) {
+  //const { name, amount } = req.body;
+
+  const valid = await itemHelpers.itemSchema.isValid(req.body);
+
+  if (valid) {
     try {
       const item = await itemHelpers.addItem(req.body);
       res.status(201).json(item);

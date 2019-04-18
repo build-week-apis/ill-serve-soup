@@ -7,6 +7,7 @@ const userRoutes = require("../routes/user-routes");
 const itemRoutes = require("../routes/item-routes");
 const categoryRoutes = require("../routes/category-routes");
 const kitchenRoutes = require("../routes/kitchen-routes");
+const stripeRoutes = require("../routes/stripe-routes");
 
 const server = express();
 
@@ -19,5 +20,6 @@ server.use(userRoutes);
 server.use(itemRoutes);
 server.use(categoryRoutes);
 server.use(kitchenRoutes);
+server.use(stripeRoutes);
 
 module.exports = server;

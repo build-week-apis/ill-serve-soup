@@ -1,4 +1,17 @@
 const db = require("../dbConfig");
+const yup = require("yup");
+
+let kitchenSchema = yup.object().shape({
+  name: yup.string().required(),
+  location: yup.string().required(),
+  mission: yup.string().required(),
+  average_visitors: yup
+    .number()
+    .required()
+    .positive()
+    .integer(),
+  website: yup.string()
+});
 
 async function getAllSoupKitchen() {
   const allKitchens = await db("kitchens");
@@ -44,5 +57,6 @@ module.exports = {
   getKitchenById,
   addKitchen,
   editKitchen,
-  deleteKitchen
+  deleteKitchen,
+  kitchenSchema
 };

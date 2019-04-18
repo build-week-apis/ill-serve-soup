@@ -1,4 +1,5 @@
 const db = require("../dbConfig");
+const yup = require("yup");
 
 async function getAllCategories() {
   const categories = await db("categories").select("id", "name"); //Im not sure how to get it
@@ -81,10 +82,15 @@ async function deleteCategory(id) {
   return result;
 }
 
+let categorySchema = yup.object().shape({
+  name: yup.string().required()
+});
+
 module.exports = {
   getAllCategories,
   getCategoriesById,
   addCategory,
   updateCategory,
-  deleteCategory
+  deleteCategory,
+  categorySchema
 };
