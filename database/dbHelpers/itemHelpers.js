@@ -19,7 +19,6 @@ async function addItem(itm) {
     .insert(itm)
     .returning("id");
   const item = getItemById(ids);
-
   return item;
 }
 
