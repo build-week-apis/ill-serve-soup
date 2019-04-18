@@ -81,10 +81,15 @@ async function deleteCategory(id) {
   return result;
 }
 
+let categorySchema = yup.object().shape({
+  name: yup.string().required()
+});
+
 module.exports = {
   getAllCategories,
   getCategoriesById,
   addCategory,
   updateCategory,
-  deleteCategory
+  deleteCategory,
+  categorySchema
 };
