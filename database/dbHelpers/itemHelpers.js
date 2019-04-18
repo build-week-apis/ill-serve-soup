@@ -1,4 +1,5 @@
 const db = require("../dbConfig");
+const yup = require("yup");
 
 async function getAllItems() {
   const allItems = await db("items");
@@ -38,10 +39,22 @@ async function deleteItem(id) {
   return result;
 }
 
+//items that its require for database
+let itemSchema = yup.object().shape({
+  name: yup.string().required(),
+  amount: yup
+    .number()
+    .required()
+    .positive()
+    .integer(),
+  unit: yup.string().required()
+});
+
 module.exports = {
   getAllItems,
   getItemById,
   updateItem,
   deleteItem,
-  addItem
+  addItem,
+  itemSchema
 };

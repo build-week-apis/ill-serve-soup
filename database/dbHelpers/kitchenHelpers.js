@@ -1,5 +1,4 @@
 const db = require("../dbConfig");
-
 const yup = require("yup");
 
 let kitchenSchema = yup.object().shape({
@@ -58,5 +57,6 @@ module.exports = {
   getKitchenById,
   addKitchen,
   editKitchen,
-  deleteKitchen
+  deleteKitchen,
+  kitchenSchema
 };
