@@ -10,7 +10,7 @@ This is the back-end for the I'll serve soup, which is part of Lambda School Bui
 
 # Instructions
 
-All API requests are made to: **_ https://kitchen-soup-backend.herokuapp.com _**
+All API requests are made to: **Not yet deployed**
 
 This api is using **https://sendgrid.com/** for sending emails.
 
