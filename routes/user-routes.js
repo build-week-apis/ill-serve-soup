@@ -42,7 +42,6 @@ router.post("/api/users/register", emailCheck, async (req, res) => {
                 });
             })
             .catch(err => {
-                //console.log(err);
                 res.status(500).json({ err: "error trying to register user" });
             });
     } else {
@@ -50,28 +49,6 @@ router.post("/api/users/register", emailCheck, async (req, res) => {
             message: "please provide name, password , email and role for the user"
         });
     }
-
-    // if (creds.name && creds.password && creds.email && creds.role) {
-    //   userHelpers
-    //     .registerUser(creds)
-    //     .then(user => {
-    //       //const token = generateToken(user);
-    //       res.status(200).json({
-    //         //token,
-    //         id: user.id,
-    //         email: user.email,
-    //         message: `User: ${user.name} was registered succesfully`
-    //       });
-    //     })
-    //     .catch(err => {
-    //       //console.log(err);
-    //       res.status(500).json({ err: "error trying to register user" });
-    //     });
-    // } else {
-    //   res.status(401).json({
-    //     message: "please provide name, password , email and role for the user"
-    //   });
-    // }
 });
 
 /**
@@ -96,25 +73,11 @@ function makeTokenFromUser(user) {
     return token;
 }
 
-/**
- *  * [POST] /api/register
- *
- * Endpoint for login a user
- *
- * Exemple of payload
- * {
- *  name: {string}   - require
- *  password: {string}   - require
- * }
- *
- */
 router.post("/api/users/login", (req, res) => {
     let { email, password } = req.body;
-    console.log(email, password);
 
     if (email && password) {
         userHelpers
-            // .findBy({ name })
             .findBy({ email })
             .first()
             .then(user => {
@@ -203,7 +166,6 @@ router.put("/api/users/:id", async (req, res) => {
 
     try {
         const result = await userHelpers.updateUser(id, user);
-        console.log(result);
         if (result === 1) {
             res.status(200).json({
                 updateID: id,
@@ -213,7 +175,6 @@ router.put("/api/users/:id", async (req, res) => {
             res.status(404).json({ message: "User not found" });
         }
     } catch (error) {
-        console.log(error);
         res.status(500).json({ error: "error trying to update user" });
     }
 });

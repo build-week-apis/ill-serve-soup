@@ -2,61 +2,61 @@ const db = require("../dbConfig");
 const yup = require("yup");
 
 let kitchenSchema = yup.object().shape({
-  name: yup.string().required(),
-  location: yup.string().required(),
-  mission: yup.string().required(),
-  average_visitors: yup
-    .number()
-    .required()
-    .positive()
-    .integer(),
-  website: yup.string()
+    name: yup.string().required(),
+    location: yup.string().required(),
+    mission: yup.string().required(),
+    average_visitors: yup
+        .number()
+        .required()
+        .positive()
+        .integer(),
+    website: yup.string()
 });
 
 async function getAllSoupKitchen() {
-  const allKitchens = await db("kitchens");
+    const allKitchens = await db("kitchens");
 
-  return allKitchens;
+    return allKitchens;
 }
 
 async function getKitchenById(id) {
-  const kitchen = await db("kitchens")
-    .where({ id })
-    .first();
+    const kitchen = await db("kitchens")
+        .where({ id })
+        .first();
 
-  return kitchen;
+    return kitchen;
 }
 
 async function addKitchen(kitchen) {
-  const [ids] = await db("kitchens")
-    .insert(kitchen)
-    .returning("id");
-  const item = getKitchenById(ids);
+    const [ids] = await db("kitchens")
+        .insert(kitchen)
+        .returning("id");
+    const item = getKitchenById(ids);
 
-  return item;
+    return item;
 }
 
 async function editKitchen(id, kitchen) {
-  const result = await db("kitchens")
-    .where({ id })
-    .update(kitchen);
+    const result = await db("kitchens")
+        .where({ id })
+        .update(kitchen);
 
-  return result;
+    return result;
 }
 
 async function deleteKitchen(id) {
-  const result = await db("kitchens")
-    .where({ id })
-    .del();
+    const result = await db("kitchens")
+        .where({ id })
+        .del();
 
-  return result;
+    return result;
 }
 
 module.exports = {
-  getAllSoupKitchen,
-  getKitchenById,
-  addKitchen,
-  editKitchen,
-  deleteKitchen,
-  kitchenSchema
+    getAllSoupKitchen,
+    getKitchenById,
+    addKitchen,
+    editKitchen,
+    deleteKitchen,
+    kitchenSchema
 };

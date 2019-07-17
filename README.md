@@ -29,7 +29,9 @@ If a Item amount is 0 the API will automatically send a messege to supplier with
   text: 'Need more Bananas!!',
 ```
 
-## REGISTER (POST) User - Access: all
+## REGISTER (POST) User
+
+**Access:** All
 
 a **POST** request to _/api/users/register_ will create a new user and return an object
 
@@ -82,6 +84,8 @@ If require field are not preset it will return a object with message:
 
 ## LOGIN (POST) User
 
+**Access:** All
+
 a **POST** request to \_/api/users/login will return an object
 
 URL: /api/users/login
@@ -112,6 +116,8 @@ If require field are not preset it will return a object with message:
 ---
 
 ## GET ALL Users
+
+**Access:** manager, admin
 
 a **GET** request to \_/api/users will return all the users existing in database
 
@@ -169,6 +175,8 @@ In case the token is not present in the header it will respond with:
 
 ## GET Users By ID
 
+**Access:** All
+
 a **GET** request to \_/api/users will return the user with specified ID
 
 URL: /api/users/:id
@@ -210,15 +218,17 @@ In case the token is not present in the header it will respond with:
 
 ## EDIT (PUT) User
 
+**Access:** All
+
 URL: /api/users/:id
 
 Nothing required, can change as few or as many things as wanted.
 
-Example: Changing user 's `username` from Alex to Alexandru, and `email` from alex@yahho.com to newEmail@yahoo.com
+Example: Changing user's `name` from Alex to Alexander, and `email` from alex@yahoo.com to newEmail@yahoo.com
 
 ```
 {
-    "name": "Alexadru",
+    "name": "Alexander",
     "email": "newEmail@yahoo.com
 }
 ```
@@ -251,6 +261,8 @@ If unsuccessful, response should be 500 and a message:
 
 ## DELETE User
 
+**Access:** All
+
 URL: /api/users/:id
 
 Nothing required, can change as few or as many things as wanted.
@@ -274,6 +286,8 @@ If user with specified ID does't exist in database will response with 404 and a 
 ---
 
 ## GET all Items/Inventory from database
+
+**Access:** All
 
 URL: /api/users/items
 
@@ -332,6 +346,8 @@ Example Data for /api/items:
 
 ## GET Items by Id from database
 
+**Access:** All
+
 URL: /api/items/:id
 
 The respone will include the decoded tokend contains the id,email and role of the current user
@@ -362,19 +378,28 @@ Example Data for /api/users/items/2:
 }
 ```
 
-## POST Items
+## Add (POST) Items to inventory
+
+**Access:** All
 
 URL: /api/items
 
 This route is restricted - a authorization header with the token its required
 
-The API does not _require_ every section to be provided. Require fields: name and amout.
+The API does not _require_ every section to be provided.
+
+Required fields:
+
+-   name(string)
+-   amount(integer)
+-   unit(string).
 
 ```
 
 {
-    "name":"Magic",
-    "amount":"12 lbs"
+    "name":"soup",
+    "amount": 5,
+    "unit": "gallons"
 }
 
 ```
@@ -384,8 +409,8 @@ A successfully created item will return a object with the posted item:
 ```
 {
     "id": 8,
-    "name": "Magidc",
-    "amount": "12 ldbs",
+    "name": "Magic",
+    "amount": "12 lbs",
     "unit": "kg",
     "price": null,
     "supplier_name": null,
@@ -397,16 +422,18 @@ A successfully created item will return a object with the posted item:
 
 ## EDIT (PUT) Items
 
+**Access:** All
+
 URL: /api/items/:id
 
 This route is restricted - a authorization header with the token its required
 
-The API does not _require_ every section to be provided. Front End architects may choose what is required on their descretion. Here is what a an edit with only the name changed will look like for user 2. Name, amount and category is being changed:
+The API does not _require_ every section to be provided. Front End architects may choose what is required on their discretion. Here is what a an edit with only the name changed will look like for user 2. Name, amount and category is being changed:
 
 ```
 
 {
-    "name": "pattato",
+    "name": "potato",
     "amount": 25,
     "unit": "lbs",
     "categoryID": 3
@@ -414,17 +441,19 @@ The API does not _require_ every section to be provided. Front End architects ma
 
 ```
 
-If succesfully the messege will be returned:
+If succesfully the message will be returned:
 
 ```
 
 {
-    "message": "Item pattato was succesfully edited"
+    "message": "Item potato was succesfully edited"
 }
 
 ```
 
 ## DELETE (DELETE) Items
+
+**Access:** All
 
 URL: /api/items/:id
 
@@ -439,6 +468,8 @@ A successful delete will return a message:
 ---
 
 ## GET all Categoris from database
+
+**Access:** All
 
 URL: /api/categories
 
@@ -512,6 +543,8 @@ If name field are not preset it will return a object with message:
 
 ## EDIT (PUT) Categories
 
+**Access:** All
+
 URL: /api/categories/:id
 
 Nothing required, can change as few or as many things as wanted.
@@ -558,6 +591,8 @@ If unsuccessful, response should be 500 and a message:
 
 ## DELETE Category
 
+**Access:** All
+
 URL: /api/categories/:id
 
 Nothing required, can change as few or as many things as wanted.
@@ -585,6 +620,8 @@ If Category with specified ID does't exist in database will response with 404 an
 ---
 
 ## GET all Kitchens Soup Restaurants from database
+
+**Access:** All
 
 URL: /api/kitchens
 
@@ -634,6 +671,8 @@ If unsuccessful, response should be 500 and a message:
 
 ## GET Kitchen Soup by Id from database
 
+**Access:** All
+
 URL: /api/kitchens/:id
 
 Nothing required, anybody can access this endpoint
@@ -671,14 +710,22 @@ URL: /api/kitchens
 
 Nothing required, anybody can access this endpoint
 
-The API _require_ require fields: name , location and mission
+The API _require_ require fields:
+
+-   name(string),
+-   location(string)
+-   mission(string)
+-   average_visitors(string)
+-   website (string)
 
 ```
 
 {
-    "name":"Best Soup Kitchden",
-    "location":"445 Mount Edden Road, Mount Eden, Auckland",
-    "mission":" Mission Possdible is about the best practices that have changed peoples’ lives for the better through a soup kitchen. Here’s the model. Make a difference!"
+    "name":"Best Soup Kitchen",
+    "location":"445 Mount Eden Road, Mount Eden, Auckland",
+    "mission":" Mission Possible is about the best practices that have changed peoples’ lives for the better through a soup kitchen. Here’s the model. Make a difference!",
+    "average_visitors": 50,
+    "website": "https://www.coolkitchen.com"
 }
 
 ```
@@ -692,8 +739,8 @@ A successfully created item will return a object with the posted item:
     "name": "Best Soup Kitchden",
     "location": "445 Mount Edden Road, Mount Eden, Auckland",
     "mission": " Mission Possdible is about the best practices that have changed peoples’ lives for the better through a soup kitchen. Here’s the model. Make a difference!",
-    "average_visitors": null,
-    "website": null
+    "average_visitors": 50,
+    "website": "https://www.coolkitchen.com"
 }
 
 ```
@@ -745,7 +792,9 @@ If unsuccessful, response should be 500 and a message:
 
 ```
 
-## DELETE Kitcken by ID
+## DELETE Kitchen by ID
+
+**Access:** All
 
 URL: /api/categories/:id
 
