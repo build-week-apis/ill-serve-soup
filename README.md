@@ -16,6 +16,12 @@ This api is using **https://sendgrid.com/** for sending emails.
 
 If a Item amount is 0 the API will automatically send a messege to supplier with a messege
 
+## Roles
+
+-   admin
+-   manager
+-   volunteer
+
 ```
   to: 'supplier@example.com',
   from: 'currentUser@example.com',
@@ -23,7 +29,7 @@ If a Item amount is 0 the API will automatically send a messege to supplier with
   text: 'Need more Bananas!!',
 ```
 
-## REGISTER (POST) User
+## REGISTER (POST) User - Access: all
 
 a **POST** request to _/api/users/register_ will create a new user and return an object
 
@@ -80,7 +86,7 @@ a **POST** request to \_/api/users/login will return an object
 
 URL: /api/users/login
 
-Form will need `username` and `password`. If posted correctly, should get a response of:
+Form will need `email` and `password`. If posted correctly, should get a response of:
 
 ```
 
